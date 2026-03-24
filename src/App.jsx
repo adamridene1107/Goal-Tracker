@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react"
-import { useGoal Target } from "./hooks/useGoal Target"
+import { useTrakova } from "./hooks/useTrakova"
 import GoalSelector from "./components/GoalSelector"
 import DailyCheck from "./components/DailyCheck"
 import Missions from "./components/Missions"
@@ -70,7 +70,7 @@ function ConfettiParticle({ x, y, color, delay, size, round }) {
 }
 
 export default function App({ user, onLogout }) {
-  const { data, today, setGoal, resetGoal, getTodayEntry, updateEntry, toggleTask, updateMissions, updateNotifications, updateDevoirs } = useGoal Target()
+  const { data, today, setGoal, resetGoal, getTodayEntry, updateEntry, toggleTask, updateMissions, updateNotifications, updateDevoirs } = useTrakova()
   const { g, onTaskComplete, onFocusComplete } = useGamification()
   const [tab, setTab] = useState(null)
   const [showSettings, setShowSettings] = useState(false)
@@ -114,7 +114,7 @@ export default function App({ user, onLogout }) {
         style={{ background: "rgba(12,12,20,0.95)", borderBottom: "1px solid rgba(139,92,246,0.1)", backdropFilter: "blur(20px)" }}>
         <div className="max-w-2xl mx-auto flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
-            <img src="/logo.svg" alt="Goal Target" className="h-10 flex-shrink-0" />
+            <img src="/logo.svg" alt="Trakova" className="h-10 flex-shrink-0" />
           </div>
           <div className="flex items-center gap-1">
             <ExportPDF data={data} />

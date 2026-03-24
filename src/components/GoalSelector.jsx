@@ -4,7 +4,7 @@ export default function GoalSelector({ onSelect }) {
   return (
     <div className="min-h-screen bg-[#080808] flex flex-col items-center justify-center p-6">
       <div className="text-center mb-10 fade-in">
-        <p className="text-white/40 text-xs font-medium uppercase tracking-widest mb-4">Goal Target</p>
+        <p className="text-white/40 text-xs font-medium uppercase tracking-widest mb-4">Trakova</p>
         <h1 className="text-3xl font-bold text-white mb-2 tracking-tight">Quel est ton objectif ?</h1>
         <p className="text-white/50 text-sm">Choisis et commence maintenant.</p>
       </div>

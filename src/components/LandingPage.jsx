@@ -62,8 +62,8 @@ export default function LandingPage({ onGetStarted }) {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4"
         style={{ background: "rgba(10,10,15,0.85)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(139,92,246,0.1)" }}>
         <div className="flex items-center gap-2">
-          <img src="/logo.svg" alt="Goal Target" className="h-8 w-8" />
-          <span className="font-bold text-white text-sm tracking-tight">Goal Target</span>
+          <img src="/logo.svg" alt="Trakova" className="h-8 w-8" />
+          <span className="font-bold text-white text-sm tracking-tight">Trakova</span>
         </div>
         <div className="flex items-center gap-3">
           <button onClick={onGetStarted} className="text-white/50 text-sm hover:text-white transition-colors hidden sm:block">Connexion</button>
@@ -235,9 +235,9 @@ export default function LandingPage({ onGetStarted }) {
             <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg,#8b5cf6,#6366f1)" }}>
               <Zap size={11} className="text-white" />
             </div>
-            <span className="text-white/50 text-sm font-medium">Goal Target</span>
+            <span className="text-white/50 text-sm font-medium">Trakova</span>
           </div>
-          <p className="text-white/25 text-xs">© 2025 Goal Target · Fait avec ��</p>
+          <p className="text-white/25 text-xs">© 2025 Trakova · Fait avec ��</p>
           <div className="flex items-center gap-4 text-white/30 text-xs">
             <a href="/subscribe" className="hover:text-white/60 transition-colors">Abonnement</a>
             <a href="/admin" className="hover:text-white/60 transition-colors">Admin</a>

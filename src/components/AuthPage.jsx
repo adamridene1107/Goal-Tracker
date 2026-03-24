@@ -51,7 +51,7 @@ export default function AuthPage({ onAuth }) {
             style={{ background: "linear-gradient(135deg,#8b5cf6,#6366f1)", boxShadow: "0 4px 16px rgba(139,92,246,0.4)" }}>
             <Zap size={16} className="text-white" />
           </div>
-          <span className="font-bold text-white text-base">Goal Target</span>
+          <span className="font-bold text-white text-base">Trakova</span>
         </div>
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-1">
