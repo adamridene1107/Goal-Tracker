@@ -78,14 +78,33 @@ const RESOURCES_BY_GOAL = {
       { id:"cardio", label:"Cardio & Running", emoji:"🏃", resources:[
         { id:"ca1", title:"Nike Run Club", desc:"Plans d'entraînement running", url:"https://www.nike.com/fr/nrc-app", type:"programme" },
         { id:"ca2", title:"Strava", desc:"Suivi de tes activités sportives", url:"https://www.strava.com/", type:"suivi" },
+        { id:"ca3", title:"Garmin Connect", desc:"Suivi GPS et analyse de performance", url:"https://connect.garmin.com/", type:"suivi" },
+        { id:"ca4", title:"Runkeeper", desc:"Coaching running personnalisé", url:"https://runkeeper.com/", type:"programme" },
       ]},
       { id:"muscu", label:"Musculation", emoji:"💪", resources:[
         { id:"ms1", title:"Jefit", desc:"Programmes muscu et suivi", url:"https://www.jefit.com/", type:"programme" },
         { id:"ms2", title:"Athlean-X", desc:"Tutoriels musculation scientifiques", url:"https://athleanx.com/", type:"tuto" },
+        { id:"ms3", title:"StrengthLog", desc:"Journal d'entraînement gratuit", url:"https://www.strengthlog.com/", type:"suivi" },
+        { id:"ms4", title:"Jeff Nippard", desc:"Programmes basés sur la science", url:"https://www.youtube.com/@JeffNippard", type:"tuto" },
       ]},
       { id:"yoga", label:"Yoga & Stretching", emoji:"🧘", resources:[
         { id:"y1", title:"Yoga with Adriene", desc:"Séances yoga gratuites YouTube", url:"https://www.youtube.com/@yogawithadriene", type:"tuto" },
         { id:"y2", title:"Down Dog", desc:"App yoga personnalisée", url:"https://www.downdogapp.com/", type:"programme" },
+        { id:"y3", title:"Stretching Daily", desc:"Routines d'étirements guidées", url:"https://www.youtube.com/results?search_query=stretching+daily+routine", type:"tuto" },
+      ]},
+      { id:"hiit", label:"HIIT & CrossFit", emoji:"��", resources:[
+        { id:"h1", title:"HASfit", desc:"Entraînements HIIT gratuits", url:"https://hasfit.com/", type:"programme" },
+        { id:"h2", title:"CrossFit HQ", desc:"WODs et tutoriels CrossFit officiels", url:"https://www.crossfit.com/", type:"tuto" },
+        { id:"h3", title:"FitOn", desc:"App HIIT et cardio gratuite", url:"https://fitonapp.com/", type:"programme" },
+      ]},
+      { id:"natation", label:"Natation & Sports aquatiques", emoji:"🏊", resources:[
+        { id:"sw1", title:"MySwimPro", desc:"Plans d'entraînement natation", url:"https://myswimpro.com/", type:"programme" },
+        { id:"sw2", title:"Swimrankings", desc:"Suivi et classements natation", url:"https://www.swimrankings.net/", type:"suivi" },
+      ]},
+      { id:"recuperation", label:"Récupération & Sommeil", emoji:"😴", resources:[
+        { id:"r1", title:"Whoop", desc:"Suivi récupération et sommeil", url:"https://www.whoop.com/", type:"suivi" },
+        { id:"r2", title:"Headspace Sport", desc:"Méditation et récupération mentale", url:"https://www.headspace.com/", type:"programme" },
+        { id:"r3", title:"Therabody", desc:"Conseils récupération musculaire", url:"https://www.therabody.com/", type:"tuto" },
       ]},
       { id:"nutrition", label:"Nutrition & Alimentation", emoji:"🥗", resources:[
         { id:"n1", title:"Eat This Much", desc:"Planificateur de repas selon tes macros", url:"https://www.eatthismuch.com/", type:"nutrition" },
