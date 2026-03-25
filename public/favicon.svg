@@ -30,5 +30,5 @@
   <line x1="300" y1="180" x2="618" y2="180" stroke-width="1" style="fill:rgb(0, 0, 0);stroke:rgb(42, 42, 74);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
 
   <!-- Tagline -->
-  <text x="301" y="200" font-family="'Courier New', monospace" font-size="12" letter-spacing="4" style="fill:rgb(108, 99, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Courier New&quot;, monospace;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">STAY ON TARGET</text>
+  <text x="301" y="200" font-family="'Courier New', monospace" font-size="20" letter-spacing="4" style="fill:rgb(108, 99, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Courier New&quot;, monospace;font-size:20px;font-weight:400;text-anchor:start;dominant-baseline:auto">STAY ON TARGET</text>
 </svg>
