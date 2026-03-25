@@ -114,7 +114,7 @@ export default function App({ user, onLogout }) {
         style={{ background: "rgba(12,12,20,0.95)", borderBottom: "1px solid rgba(139,92,246,0.1)", backdropFilter: "blur(20px)" }}>
         <div className="max-w-2xl mx-auto flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
-            <img src="/logo.svg" alt="Trakova" style={{ height:"120px", width:"auto" }} className="flex-shrink-0" />
+            <img src="/logo.svg" alt="Trakova" style={{ height:"60px", width:"auto" }} className="flex-shrink-0" />
           </div>
           <div className="flex items-center gap-1">
             <ExportPDF data={data} />
