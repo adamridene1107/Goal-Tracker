@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useTheme } from "../context/ThemeContext"
 import { Zap, Target, BookOpen, ArrowRight, CheckCircle2, Flame, Star, Shield, Dumbbell, Lightbulb, ListTodo, ChevronRight, Play } from "lucide-react"
 
 const FEATURES = [
@@ -28,6 +29,11 @@ function Confetti({ items }) {
 }
 
 export default function LandingPage({ onGetStarted }) {
+  const { theme } = useTheme()
+  const isDark = theme !== "light"
+  const pageBg = isDark ? "#0A0A0F" : "#f0f0f5"
+  const textPrimary = isDark ? "#ffffff" : "#1a1a2e"
+  const textMuted = isDark ? "rgba(255,255,255,0.5)" : "rgba(26,26,46,0.5)"
   const [faqOpen, setFaqOpen] = useState(null)
   const [confetti, setConfetti] = useState([])
   const [activeFeature, setActiveFeature] = useState(0)
@@ -56,7 +62,7 @@ export default function LandingPage({ onGetStarted }) {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: "#0A0A0F" }}>
+    <div className="min-h-screen overflow-x-hidden" style={{ background: pageBg }}>
       <Confetti items={confetti} />
 
       {/* NAV */}
