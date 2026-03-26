@@ -39,7 +39,7 @@ function Privacy() {
       <Section n="3" title="Utilisation des données">
         <ul className="list-disc list-inside space-y-1 text-white/40">
           <li>Fournir et améliorer le service Trackova</li>
-          <li>Vous envoyer des emails liés à votre compte</li>
+          <li>Vous envoyér des emails liés à votre compte</li>
           <li>Analyser l'utilisation globale (données anonymisées)</li>
         </ul>
         <p className="mt-2">Nous ne vendons jamais vos données à des tiers.</p>
@@ -50,7 +50,7 @@ function Privacy() {
         <p>Vos données ne sont jamais vendues. Elles peuvent être partagées uniquement avec :</p>
         <ul className="list-disc list-inside space-y-1 text-white/40">
           <li>Notre hébergeur (Vercel) pour le fonctionnement technique</li>
-          <li>Notre prestataire de paiement pour la gestion des abonnements</li>
+          <li>Notre prestataire de paiement pour la gestion des abonnéments</li>
         </ul>
       </Section>
       <Section n="7" title="Vos droits (RGPD)">
@@ -60,7 +60,7 @@ function Privacy() {
           <li>Droit de rectification</li>
           <li>Droit à l'effacement ("droit à l'oubli")</li>
           <li>Droit à la portabilité de vos données</li>
-          <li>Droit d'opposition au traitement</li>
+          <li>Droit d'opposition'au traitement</li>
         </ul>
         <p className="mt-2">Pour exercer ces droits : <span className="text-violet-400">contact@trackova.app</span></p>
       </Section>
@@ -80,7 +80,7 @@ function CGU() {
         <p className="text-white/30 text-xs">Dernière mise à jour : 2026</p>
       </div>
       <Section n="1" title="Objet"><p>Les présentes CGU régissent l'accès et l'utilisation de l'application Trackova, disponible sur trackova.vercel.app. En utilisant Trackova, vous acceptez pleinement ces conditions.</p></Section>
-      <Section n="2" title="Description du service"><p>Trackova est une application de suivi d'objectifs personnels couvrant quatre domaines : Études, Sport, Projet personnel et Organisation. L'application propose un essai gratuit de 7 jours suivi d'un abonnement mensuel à 6€/mois.</p></Section>
+      <Section n="2" title="Description du service"><p>Trackova est une application de suivi d'objectifs personnels couvrant quatre domaines : Études, Sport, Projet personnel et Organisation. L'application propose un essai gratuit de 7 jours suivi d'un'abonnément mensuel à 6€/mois.</p></Section>
       <Section n="3" title="Inscription et compte">
         <p>Pour utiliser Trackova, vous devez :</p>
         <ul className="list-disc list-inside space-y-1 text-white/40">
@@ -90,11 +90,11 @@ function CGU() {
         </ul>
         <p className="mt-2">Vous êtes responsable de la confidentialité de vos identifiants.</p>
       </Section>
-      <Section n="4" title="Essai gratuit et abonnement"><p>L'essai gratuit de 7 jours donne accès à toutes les fonctionnalités sans engagement et sans carte bancaire requise. À l'issue de la période d'essai, l'accès aux fonctionnalités premium nécessite un abonnement à 6€/mois, sans engagement, résiliable à tout moment.</p></Section>
-      <Section n="5" title="Paiement"><p>Le paiement est mensuel et prélevé automatiquement à la date anniversaire de votre abonnement. En cas d'échec de paiement, votre accès sera suspendu après un délai de grâce de 3 jours.</p></Section>
-      <Section n="6" title="Résiliation"><p>Vous pouvez résilier votre abonnement à tout moment depuis votre compte. La résiliation prend effet à la fin de la période de facturation en cours. Aucun remboursement partiel n'est effectué pour les jours non utilisés.</p></Section>
-      <Section n="7" title="Propriété intellectuelle"><p>L'application Trackova, son code, son design, son logo et ses contenus sont la propriété exclusive de leurs créateurs. Toute reproduction ou utilisation non autorisée est interdite.</p></Section>
-      <Section n="8" title="Données utilisateur"><p>Vos tâches, objectifs et données de progression vous appartiennent. Vous pouvez les exporter ou les supprimer à tout moment.</p></Section>
+      <Section n="4" title="Essai gratuit et abonnément"><p>L'essai gratuit de 7 jours donne accès à toutes les fonctionnalités sans engagement et sans carte bancaire requise. À l'issue de la période d'essai, l'accès aux fonctionnalités premium nécessite un'abonnément à 6€/mois, sans engagement, résiliable à tout moment.</p></Section>
+      <Section n="5" title="Paiement"><p>Le paiement est mensuel et prélevé automatiquement à la date anniversaire de votre abonnément. En cas d'échec de paiement, votre accès sera suspendu après un délai de grâce de 3 jours.</p></Section>
+      <Section n="6" title="Résiliation"><p>Vous pouvez résilier votre abonnément à tout moment depuis votre compte. La résiliation prend effet à la fin de la période de facturation en cours. Aucun remboursement partiel n'est effectué pour les jours non utilisés.</p></Section>
+      <Section n="7" title="Propriété intellectuelle"><p>L'application Trackova, son code, son design, son logo et ses contenus sont la propriété exclusive de leurs créateurs. Toute reproduction ou utilisation non'autorisée est interdite.</p></Section>
+      <Section n="8" title="Données utilisateur"><p>Vos tâches, objectifs et données de progression vous appartiennent. Vous pouvez les exportér ou les supprimer à tout moment.</p></Section>
       <Section n="9" title="Comportement interdit">
         <p>Il est interdit d'utiliser Trackova pour :</p>
         <ul className="list-disc list-inside space-y-1 text-white/40">

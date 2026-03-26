@@ -48,7 +48,7 @@ export default function Onboarding({ onDone }) {
 
           {!isLast && (
             <button onClick={onDone} className="w-full text-center text-white/20 text-xs mt-3 hover:text-white/40 transition-colors">
-              Passer le tutoriel
+              Passér le tutoriel
             </button>
           )}
         </div>

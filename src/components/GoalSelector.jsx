@@ -1,13 +1,13 @@
 ﻿import { GOALS } from "../lib/goals"
-import { useTheme } from "../context/ThemeContext"
+import { useThème } from "../context/ThèmeContext"
 
 export default function GoalSelector({ onSelect }) {
-  const { theme } = useTheme()
-  const bg = theme === "light" ? "#f0f0f5" : "#080808"
-  const cardBg = theme === "light" ? "rgba(255,255,255,0.9)" : "#111111"
-  const cardBorder = theme === "light" ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)"
-  const textColor = theme === "light" ? "#1a1a2e" : "rgba(255,255,255,0.9)"
-  const mutedColor = theme === "light" ? "rgba(26,26,46,0.4)" : "rgba(255,255,255,0.4)"
+  const { thème } = useThème()
+  const bg = thème === "light" ? "#f0f0f5" : "#080808"
+  const cardBg = thème === "light" ? "rgba(255,255,255,0.9)" : "#111111"
+  const cardBorder = thème === "light" ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)"
+  const textColor = thème === "light" ? "#1a1a2e" : "rgba(255,255,255,0.9)"
+  const mutedColor = thème === "light" ? "rgba(26,26,46,0.4)" : "rgba(255,255,255,0.4)"
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6" style={{ background: bg }}>
       <div className="text-center mb-10 fade-in">

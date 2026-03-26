@@ -4,16 +4,16 @@ import { Zap, Flame, Trophy, Star, Plus, Trash2, Gift, Target, Clock, CheckSquar
 
 
 const BADGES = [
-  { id:"first_task",   emoji:"⭐", label:"Premier pas",      desc:"Completer ta premiere tache",        xp:0,   streak:0,  tasks:1   },
+  { id:"first_task",   emoji:"⭐", label:"Premier pas",      desc:"Compléter ta première tâche",        xp:0,   streak:0,  tasks:1   },
   { id:"streak_3",     emoji:"🔥", label:"En feu",           desc:"3 jours de streak",                  xp:0,   streak:3,  tasks:0   },
   { id:"streak_7",     emoji:"🌟", label:"Une semaine",      desc:"7 jours de streak",                  xp:0,   streak:7,  tasks:0   },
   { id:"streak_30",    emoji:"💎", label:"Un mois",          desc:"30 jours de streak",                 xp:0,   streak:30, tasks:0   },
-  { id:"xp_100",       emoji:"⚡", label:"Energise",         desc:"Atteindre 100 XP",                   xp:100, streak:0,  tasks:0   },
+  { id:"xp_100",       emoji:"⚡", label:"Énergisé",         desc:"Atteindre 100 XP",                   xp:100, streak:0,  tasks:0   },
   { id:"xp_500",       emoji:"🏆", label:"Champion",         desc:"Atteindre 500 XP",                   xp:500, streak:0,  tasks:0   },
   { id:"xp_1000",      emoji:"👑", label:"Roi",              desc:"Atteindre 1000 XP",                  xp:1000,streak:0,  tasks:0   },
-  { id:"tasks_10",     emoji:"✅", label:"Productif",        desc:"Completer 10 taches",                xp:0,   streak:0,  tasks:10  },
-  { id:"tasks_50",     emoji:"🎯", label:"Focuse",           desc:"Completer 50 taches",                xp:0,   streak:0,  tasks:50  },
-  { id:"tasks_100",    emoji:"🚀", label:"Inarretable",      desc:"Completer 100 taches",               xp:0,   streak:0,  tasks:100 },
+  { id:"tasks_10",     emoji:"✅", label:"Productif",        desc:"Compléter 10 tâches",                xp:0,   streak:0,  tasks:10  },
+  { id:"tasks_50",     emoji:"🎯", label:"Focusé",           desc:"Compléter 50 tâches",                xp:0,   streak:0,  tasks:50  },
+  { id:"tasks_100",    emoji:"🚀", label:"Inarrêtable",      desc:"Compléter 100 tâches",               xp:0,   streak:0,  tasks:100 },
   { id:"streak_14",    emoji:"🌈", label:"Deux semaines",    desc:"14 jours de streak",                 xp:0,   streak:14, tasks:0   },
   { id:"xp_2000",      emoji:"🦁", label:"Legendaire",       desc:"Atteindre 2000 XP",                  xp:2000,streak:0,  tasks:0   },
 ]
@@ -46,7 +46,7 @@ function XPToast({ lastXP }) {
                 <span className="text-2xl" style={{ filter: unlocked ? "none" : "grayscale(1)" }}>{b.emoji}</span>
                 <p className="text-white/70 text-[11px] font-medium text-center leading-tight">{b.label}</p>
                 <p className="text-white/30 text-[10px] text-center leading-tight">{b.desc}</p>
-                {unlocked && <span className="text-[9px] text-violet-400 font-medium">Debloque</span>}
+                {unlocked && <span className="text-[9px] text-violet-400 font-medium">Débloqué</span>}
               </div>
             )
           })}
@@ -125,8 +125,8 @@ export default function Gamification() {
         </div>
         <div className="card text-center py-3">
           <CheckSquare size={18} className="text-white/40 mx-auto mb-1" />
-          <p className="text-white font-bold text-lg">{g.tasksCompleted}</p>
-          <p className="text-white/40 text-[10px]">Taches</p>
+          <p className="text-white font-bold text-lg">{g.tasksComplèted}</p>
+          <p className="text-white/40 text-[10px]">Tâches</p>
         </div>
         <div className="card text-center py-3">
           <Clock size={18} className="text-white/40 mx-auto mb-1" />
@@ -155,7 +155,7 @@ export default function Gamification() {
             style={{ width: `${Math.min(100, Math.round((g.dailyDone / g.dailyGoal) * 100))}%` }} />
         </div>
         <div className="flex justify-between mt-1.5">
-          <span className="text-white/40 text-xs">{g.dailyDone} / {g.dailyGoal} taches</span>
+          <span className="text-white/40 text-xs">{g.dailyDone} / {g.dailyGoal} tâches</span>
           {g.dailyDone >= g.dailyGoal
             ? <span className="text-white/60 text-xs">Objectif atteint ! +50 XP</span>
             : <span className="text-white/30 text-xs">+50 XP bonus a l atteinte</span>}
@@ -180,12 +180,12 @@ export default function Gamification() {
         </div>
       </div>
 
-      {/* Recompenses */}
+      {/* Récompenses */}
       <div className="card">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Gift size={14} className="text-white/50" />
-            <span className="text-white/70 text-sm font-semibold">Recompenses</span>
+            <span className="text-white/70 text-sm font-semibold">Récompenses</span>
           </div>
           <button onClick={() => setShowAdd(!showAdd)} className="btn-ghost p-1.5">
             <Plus size={14} />
@@ -195,7 +195,7 @@ export default function Gamification() {
         {showAdd && (
           <div className="flex gap-2 mb-3 flex-wrap border-b border-white/[0.06] pb-3">
             <input value={newReward.name} onChange={e => setNewReward(r => ({ ...r, name: e.target.value }))}
-              placeholder="Ex: Regarder une serie" className="input flex-1 min-w-0 text-sm" />
+              placeholder="Ex: Regarder une série" className="input flex-1 min-w-0 text-sm" />
             <input value={newReward.cost} onChange={e => setNewReward(r => ({ ...r, cost: e.target.value }))}
               type="number" min="10" placeholder="Cout XP" className="input w-24 flex-shrink-0 text-sm" />
             <button onClick={handleAddReward} className="btn-primary px-3 text-sm">Ajouter</button>
@@ -203,7 +203,7 @@ export default function Gamification() {
         )}
 
         {g.rewards.length === 0 ? (
-          <p className="text-white/30 text-xs text-center py-3">Ajoute des recompenses a debloquer avec tes XP.</p>
+          <p className="text-white/30 text-xs text-center py-3">Ajoute des récompenses a débloquér avec tes XP.</p>
         ) : (
           <div className="space-y-2">
             {g.rewards.map(r => {
@@ -228,7 +228,7 @@ export default function Gamification() {
                       className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all flex-shrink-0 ${
                         canUnlock ? "bg-white text-black hover:bg-white/90" : "bg-white/[0.06] text-white/30 cursor-not-allowed"
                       }`}>
-                      {canUnlock ? "Debloquer" : "Locked"}
+                      {canUnlock ? "Débloquér" : "Locked"}
                     </button>
                   )}
                   <button onClick={() => removeReward(r.id)} className="btn-ghost p-1 flex-shrink-0">

@@ -1,6 +1,6 @@
 ﻿import { useState } from "react"
 import { Plus, Trash2, CheckCircle2, Clock, Circle, ChevronDown, ChevronUp, Minus } from "lucide-react"
-import { getCategoriesForGoal } from "../lib/categories"
+import { getCatégoriesForGoal } from "../lib/catégories"
 
 const ST = [
   { v:"todo",       l:"A faire",  Icon:Circle,       c:"text-white/40",  bg:"bg-white/[0.07] text-white/40 border-white/[0.06]" },
@@ -10,10 +10,10 @@ const ST = [
 // CATS est maintenant dynamique selon goalId
 
 export default function Missions({ data, updateMissions }) {
-  const CATS = getCategoriesForGoal(data.goal || "homework").map(c => c.l)
+  const CATS = getCatégoriesForGoal(data.goal || "homework").map(c => c.l)
   const missions = data.missions || []
   const [txt, setTxt] = useState("")
-  const [cat, setCat] = useState(() => getCategoriesForGoal(data.goal || "homework")[0].l)
+  const [cat, setCat] = useState(() => getCatégoriesForGoal(data.goal || "homework")[0].l)
   const [target, setTarget] = useState("")
   const [open, setOpen] = useState(null)
 
@@ -47,7 +47,7 @@ export default function Missions({ data, updateMissions }) {
   const grouped = CATS.reduce((a, c) => {
     const items = missions.filter(m => m.category === c)
     if (items.length) a[c] = items
-    return a
+    return'a
   }, {})
 
   return (
@@ -84,7 +84,7 @@ export default function Missions({ data, updateMissions }) {
       </div>
 
       {missions.length === 0 ? (
-        <div className="card text-center py-10 text-white/40 text-sm">Aucune mission. Cree ta premiere !</div>
+        <div className="card text-center py-10 text-white/40 text-sm">Aucune mission. Crée ta première !</div>
       ) : (
         <div className="space-y-4">
           {Object.entries(grouped).map(([c, items]) => (

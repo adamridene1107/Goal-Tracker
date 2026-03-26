@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useTheme } from "../context/ThemeContext"
+import { useThème } from "../context/ThèmeContext"
 import { Zap, Target, BookOpen, ArrowRight, CheckCircle2, Flame, Star, Shield, Dumbbell, Lightbulb, ListTodo, ChevronRight, Play } from "lucide-react"
 
 const FEATURES = [
@@ -29,8 +29,8 @@ function Confetti({ items }) {
 }
 
 export default function LandingPage({ onGetStarted }) {
-  const { theme } = useTheme()
-  const isDark = theme !== "light"
+  const { thème } = useThème()
+  const isDark = thème !== "light"
   const pageBg = isDark ? "#0A0A0F" : "#f0f0f5"
   const textPrimary = isDark ? "#ffffff" : "#1a1a2e"
   const textMuted = isDark ? "rgba(255,255,255,0.5)" : "rgba(26,26,46,0.5)"
@@ -243,10 +243,10 @@ export default function LandingPage({ onGetStarted }) {
         <p className="text-white/40 text-sm text-center mb-10">Tout ce que tu veux savoir sur Trackova</p>
         <div className="space-y-3">
           {[
-            { q:"Comment s'organiser quand on est étudiant ?", a:"Trackova centralise tes devoirs, révisions et objectifs. Tu crées des tâches quotidiennes, suis ta progression et maintiens un streak de travail régulier pour rester motivé." },
+            { q:"Comment s'organiser quand on'est étudiant ?", a:"Trackova centralise tes devoirs, révisions et objectifs. Tu crées des tâches quotidiennes, suis ta progression et maintiens un streak de travail régulier pour rester motivé." },
             { q:"Quelle est la meilleure app de productivité gratuite ?", a:"Trackova propose un essai gratuit de 7 jours sans carte bancaire avec toutes les fonctionnalités : suivi d'objectifs, gamification XP, calendrier et gestion de fichiers." },
             { q:"Comment suivre ses objectifs sportifs efficacement ?", a:"Le mode Sport de Trackova te permet de planifier tes séances avec des templates (Push/Pull/Legs, HIIT, Yoga), suivre ton volume et tes calories, et accéder à des ressources nutrition." },
-            { q:"Comment rester motivé sur un projet personnel ?", a:"Trackova utilise des streaks et des points XP pour te garder motivé. Plus tu travailles régulièrement, plus tu montes en niveau. Les badges de récompense rendent chaque victoire satisfaisante." },
+            { q:"Comment rester motivé sur un projet personnel ?", a:"Trackova utilise des streaks et des points XP pour te garder motivé. Plus tu travailles régulièrement, plus tu montes en niveau. Les badges de récompense rendent chaque victoire satisfaisanté." },
             { q:"Peut-on gérer plusieurs objectifs avec Trackova ?", a:"Oui, 4 modes disponibles : Études, Sport, Projet créatif et Organisation. Chaque mode a ses propres outils adaptés à tes besoins spécifiques." },
           ].map((item, i) => (
             <div key={i} className="rounded-xl overflow-hidden" style={{ border:"1px solid rgba(139,92,246,0.15)", background:"rgba(139,92,246,0.04)" }}>
@@ -266,10 +266,10 @@ export default function LandingPage({ onGetStarted }) {
           </div>
           <p className="text-white/25 text-xs">© 2026 Trakova</p>
           <div className="flex items-center gap-4 text-white/30 text-xs">
-            <a href="/subscribe" className="hover:text-white/60 transition-colors">Abonnement</a>
+            <a href="/subscribe" className="hover:text-white/60 transition-colors">Abonnément</a>
             <a href="/contact" className="hover:text-white/60 transition-colors">Contact</a>
             <a href="/cgu" className="hover:text-white/60 transition-colors">CGU</a>
-            <a href="/privacy" className="hover:text-white/60 transition-colors">Confidentialite</a>
+            <a href="/privacy" className="hover:text-white/60 transition-colors">Confidentialité</a>
           </div>
         </div>
       </footer>

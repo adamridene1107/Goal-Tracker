@@ -1,8 +1,8 @@
-import { useTheme } from "../context/ThemeContext"
+import { useThème } from "../context/ThèmeContext"
 
 export default function ContactPage() {
-  const { theme } = useTheme()
-  const isDark = theme !== "light"
+  const { thème } = useThème()
+  const isDark = thème !== "light"
   const bg = isDark ? "#0A0A0F" : "#f0f0f5"
   const textPrimary = isDark ? "#ffffff" : "#1a1a2e"
   const textMuted = isDark ? "rgba(255,255,255,0.5)" : "rgba(26,26,46,0.5)"
@@ -15,7 +15,7 @@ export default function ContactPage() {
       <div className="mb-10">
         <p className="text-violet-400 text-xs font-medium uppercase tracking-widest mb-2">Trakova</p>
         <h1 style={{ color: textPrimary }} className="text-2xl font-bold mb-1">Contact & Support</h1>
-        <p style={{ color: textMuted }} className="text-sm">On est la pour t aider.</p>
+        <p style={{ color: textMuted }} className="text-sm">On'est la pour t aider.</p>
       </div>
 
       <div className="space-y-4">
@@ -28,18 +28,18 @@ export default function ContactPage() {
         </div>
 
         <div className="card">
-          <h3 className="text-white/80 font-semibold text-sm mb-1">⏱️ Temps de reponse</h3>
-          <p className="text-white/50 text-sm">On repond generalement sous 24-48h en semaine.</p>
+          <h3 className="text-white/80 font-semibold text-sm mb-1">⏱️ Temps de réponse</h3>
+          <p className="text-white/50 text-sm">On répond generalement sous 24-48h en semaine.</p>
         </div>
 
         <div className="card">
           <h3 className="text-white/80 font-semibold text-sm mb-3">❓ FAQ rapide</h3>
           <div className="space-y-3">
             {[
-              { q:"Comment annuler mon abonnement ?", a:"Va dans Parametres → Abonnement → Resilier." },
-              { q:"Mes donnees sont-elles sauvegardees ?", a:"Oui, tes donnees sont sauvegardees dans le cloud via Supabase et accessibles sur tous tes appareils." },
-              { q:"J ai oublie mon mot de passe", a:"Sur la page de connexion, clique sur Mot de passe oublie pour recevoir un lien de reinitialisation." },
-              { q:"L app fonctionne-t-elle hors ligne ?", a:"Les donnees sont synchronisees quand tu es connecte. Une connexion internet est recommandee." },
+              { q:"Comment annuler mon'abonnément ?", a:"Va dans Paramètres → Abonnément → Résilier." },
+              { q:"Mes donnees sont-elles sauvegardees ?", a:"Oui, tes donnees sont sauvegardees dans le cloud via Supabase et accèssibles sur tous tes appareils." },
+              { q:"J ai oublie mon mot de passe", a:"Sur la page de connexion, clique sur Mot de passe oublie pour recevoir un lien de réinitialisation." },
+              { q:"L app fonctionne-t-elle hors ligne ?", a:"Les donnees sont synchronisees quand tu es connecté. Une connexion internet est recommandee." },
             ].map((item, i) => (
               <div key={i} className="border-t border-white/[0.06] pt-3 first:border-0 first:pt-0">
                 <p className="text-white/70 text-sm font-medium mb-1">{item.q}</p>

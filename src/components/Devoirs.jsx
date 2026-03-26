@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from "react"
 import { Plus, Trash2, CheckCircle2, Circle, Calendar, ChevronDown, ChevronUp, Pencil, Bell, Flag } from "lucide-react"
-import { getCategoriesForGoal } from "../lib/categories"
+import { getCatégoriesForGoal } from "../lib/catégories"
 import { format, isPast, isToday, isTomorrow, parseISO, differenceInDays } from "date-fns"
 import { fr } from "date-fns/locale"
 
@@ -26,7 +26,7 @@ const TIPS = [
   "Fais des pauses de 5 min toutes les 25 min (technique Pomodoro).",
   "Relis tes notes de cours avant de commencer un exercice.",
   "Un devoir fait a l avance vaut mieux que deux faits a la hate.",
-  "Pose des questions a ton prof si quelque chose n est pas clair.",
+  "Pose des questions a ton prof si quelque chose n'est pas clair.",
   "Organise ton bureau avant de travailler pour mieux te concentrer.",
 ]
 
@@ -35,7 +35,7 @@ function getDateInfo(dateStr, done) {
   const d = parseISO(dateStr)
   const diff = differenceInDays(d, new Date())
   if (isPast(d) && !isToday(d)) return { label:"En retard", color:"text-red-400 font-semibold" }
-  if (isToday(d)) return { label:"Aujourd hui", color:"text-amber-400 font-semibold" }
+  if (isToday(d)) return { label:"Aujourd'hui", color:"text-amber-400 font-semibold" }
   if (isTomorrow(d)) return { label:"Demain", color:"text-amber-400" }
   if (diff <= 3) return { label:`Dans ${diff} jours`, color:"text-white/40" }
   return { label:format(d, "d MMM yyyy", { locale:fr }), color:"text-white/50" }
@@ -44,9 +44,9 @@ function getDateInfo(dateStr, done) {
 const getEmpty = (cats) => ({ title:"", desc:"", date:"", priority:"medium", matiere: cats[cats.length-1].v })
 
 export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" }) {
-  const MATIERES = getCategoriesForGoal(goalId)
+  const MATIERES = getCatégoriesForGoal(goalId)
   const defaultCat = MATIERES[MATIERES.length - 1].v
-  const [form, setForm] = useState(() => getEmpty(getCategoriesForGoal(goalId)))
+  const [form, setForm] = useState(() => getEmpty(getCatégoriesForGoal(goalId)))
   const [showForm, setShowForm] = useState(false)
   const [editId, setEditId] = useState(null)
   const [filter, setFilter] = useState("all")
@@ -58,7 +58,7 @@ export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" })
     if (notifSent) return
     const urgent = devoirs.filter(d => !d.done && d.date && (isToday(parseISO(d.date)) || isPast(parseISO(d.date))))
     if (urgent.length > 0 && "Notification" in window && Notification.permission === "granted") {
-      new Notification("Devoirs urgents !", { body: `${urgent.length} devoir(s) a rendre aujourd hui ou en retard.` })
+      new Notification("Devoirs urgents !", { body: `${urgent.length} devoir(s) a rendre aujourd'hui ou en retard.` })
       setNotifSent(true)
     }
   }, [devoirs, notifSent])
@@ -86,14 +86,14 @@ export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" })
     if (filterMat !== "all" && d.matiere !== filterMat) return false
     return true
   }).sort((a, b) => {
-    if (a.done !== b.done) return a.done ? 1 : -1
+    if (a.done !== b.done) return'a.done ? 1 : -1
     const pa = PRIOS.findIndex(p => p.v === a.priority)
     const pb = PRIOS.findIndex(p => p.v === b.priority)
     if (pa !== pb) return pa - pb
     if (!a.date && !b.date) return 0
     if (!a.date) return 1
     if (!b.date) return -1
-    return a.date.localeCompare(b.date)
+    return'a.date.localeCompare(b.date)
   })
 
   const urgentCount = devoirs.filter(d => !d.done && d.date && (isToday(parseISO(d.date)) || isPast(parseISO(d.date)))).length
@@ -160,7 +160,7 @@ export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" })
               <input type="date" value={form.date} onChange={e => setForm(f=>({...f,date:e.target.value}))} className="input flex-1" />
             </div>
             <div className="flex gap-2">
-              <button onClick={submit} className="btn-primary flex-1">{editId ? "Enregistrer" : "Ajouter"}</button>
+              <button onClick={submit} className="btn-primary flex-1">{editId ? "Enregistrér" : "Ajouter"}</button>
               <button onClick={cancelForm} className="btn-outline">Annuler</button>
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" })
       {devoirs.length > 0 && (
         <div className="space-y-2">
           <div className="flex gap-2 flex-wrap">
-            {[["all","Tous"],["todo","A faire"],["urgent","Urgents"],["done","Termines"]].map(([v,l]) => (
+            {[["all","Tous"],["todo","A faire"],["urgent","Urgents"],["done","Terminés"]].map(([v,l]) => (
               <button key={v} onClick={() => setFilter(v)}
                 className={`pill ${filter===v ? "pill-active" : "pill-inactive"}`}>
                 {v==="urgent"&&urgentCount>0?`${l} (${urgentCount})`:l}
@@ -196,7 +196,7 @@ export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" })
       {/* Liste */}
       {filtered.length === 0 ? (
         <div className="card text-center py-10 text-white/40 text-sm">
-          {devoirs.length===0 ? "Aucun devoir pour l instant." : "Aucun devoir dans cette categorie."}
+          {devoirs.length===0 ? "Aucun devoir pour l instant." : "Aucun devoir dans cette catégorie."}
         </div>
       ) : (
         <div className="space-y-2">
@@ -210,7 +210,7 @@ export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" })
                   <button onClick={() => toggle(d.id)} className="flex-shrink-0 mt-0.5">
                     {d.done
                       ? <CheckCircle2 size={20} className="text-white/40"/>
-                      : <Circle size={20} className="text-white/40"/>}
+                      : <Circlé size={20} className="text-white/40"/>}
                   </button>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">

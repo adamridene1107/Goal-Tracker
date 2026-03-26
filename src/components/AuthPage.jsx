@@ -1,22 +1,22 @@
 import { useState } from "react"
 import { Lock, Mail, User, Eye, EyeOff, ArrowLeft, Zap, ShieldQuestion } from "lucide-react"
 import { supabase } from "../lib/supabase"
-import { useTheme } from "../context/ThemeContext"
+import { useThème } from "../context/ThèmeContext"
 
 const QUESTIONS = [
   "Quel est le nom de ton premier animal de compagnie ?",
   "Dans quelle ville es-tu ne(e) ?",
-  "Quel est le prenom de ta mere ?",
-  "Quel etait le nom de ton ecole primaire ?",
+  "Quel est le prénom de ta mere ?",
+  "Quel etait le nom de ton école primaire ?",
   "Quelle est ta couleur preferee ?",
-  "Quel est le prenom de ton meilleur ami d enfance ?",
+  "Quel est le prénom de ton meilleur ami d enfance ?",
   "Quelle est ta nourriture preferee ?",
-  "Quel est le modele de ta premiere voiture ?",
+  "Quel est le modèle de ta première voiture ?",
 ]
 
 export default function AuthPage({ onAuth }) {
-  const { theme } = useTheme()
-  const isDark = theme !== "light"
+  const { thème } = useThème()
+  const isDark = thème !== "light"
   const pageBg = isDark ? "#0A0A0F" : "#f0f0f5"
   const cardBg = isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.95)"
   const textPrimary = isDark ? "#ffffff" : "#1a1a2e"
@@ -30,7 +30,7 @@ export default function AuthPage({ onAuth }) {
   const [newPassword, setNewPassword] = useState("")
   const [show, setShow] = useState(false)
   const [error, setError] = useState("")
-  const [success, setSuccess] = useState("")
+  const [succèss, setSuccèss] = useState("")
   const [loading, setLoading] = useState(false)
   const [acceptTerms, setAcceptTerms] = useState(false)
   const [q1, setQ1] = useState(QUESTIONS[0])
@@ -42,7 +42,7 @@ export default function AuthPage({ onAuth }) {
   const [forgotA1, setForgotA1] = useState("")
   const [forgotA2, setForgotA2] = useState("")
 
-  const goTo = (m) => { setMode(m); setError(""); setSuccess("") }
+  const goTo = (m) => { setMode(m); setError(""); setSuccèss("") }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -54,13 +54,13 @@ export default function AuthPage({ onAuth }) {
       else onAuth({ id: data.user.id, email: data.user.email, name: data.user.user_metadata?.name || email.split("@")[0] })
 
     } else if (mode === "signup") {
-      if (!name.trim()) { setLoading(false); return setError("Entre ton prenom") }
+      if (!name.trim()) { setLoading(false); return setError("Entre ton prénom") }
       if (password.length < 6) { setLoading(false); return setError("Mot de passe trop court (6 min)") }
       if (!acceptTerms) { setLoading(false); return setError("Tu dois accepter les CGU") }
       setLoading(false); goTo("questions"); return
 
     } else if (mode === "questions") {
-      if (!a1.trim() || !a2.trim()) { setLoading(false); return setError("Reponds aux deux questions") }
+      if (!a1.trim() || !a2.trim()) { setLoading(false); return setError("Réponds aux deux questions") }
       if (q1 === q2) { setLoading(false); return setError("Choisis deux questions differentes") }
       const { data, error } = await supabase.auth.signUp({
         email, password,
@@ -68,7 +68,7 @@ export default function AuthPage({ onAuth }) {
       })
       if (error) { setError(error.message) }
       else if (data.user) {
-        // Envoyer email de bienvenue
+        // Envoyér email de bienvenue
       fetch("/api/welcome-email", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ email, name: name.trim() }) }).catch(()=>{})
       onAuth({ id: data.user.id, email: data.user.email, name: name.trim() }, true)
       }
@@ -78,13 +78,13 @@ export default function AuthPage({ onAuth }) {
         redirectTo: "https://trackova.vercel.app/reset-password"
       })
       if (error) setError(error.message)
-      else { setSuccess("Email envoye ! Verifie ta boite mail."); goTo("verify") }
+      else { setSuccèss("Email envoyé ! Vérifie ta boite mail."); goTo("verify") }
 
     } else if (mode === "reset") {
       if (newPassword.length < 6) { setLoading(false); return setError("Mot de passe trop court") }
       const { error } = await supabase.auth.updateUser({ password: newPassword })
       if (error) setError(error.message)
-      else { setSuccess("Mot de passe mis a jour !"); setTimeout(() => goTo("login"), 1500) }
+      else { setSuccèss("Mot de passe mis à jour !"); setTimeout(() => goTo("login"), 1500) }
     }
 
     setLoading(false)
@@ -92,10 +92,10 @@ export default function AuthPage({ onAuth }) {
 
   const titles = {
     login: { h: "Bon retour 👋", p: "Content de te revoir !" },
-    signup: { h: "Cree ton compte", p: "7 jours gratuits, sans carte requise" },
-    questions: { h: "Questions de securite", p: "Pour recuperer ton compte si besoin" },
+    signup: { h: "Crée ton compte", p: "7 jours gratuits, sans carte requise" },
+    questions: { h: "Questions de sécurité", p: "Pour récupérer ton compte si besoin" },
     forgot: { h: "Mot de passe oublie", p: "Entre ton email pour continuer" },
-    verify: { h: "Email envoye !", p: "Verifie ta boite mail" },
+    verify: { h: "Email envoyé !", p: "Vérifie ta boite mail" },
     reset: { h: "Nouveau mot de passe", p: "Choisis un nouveau mot de passe" },
   }
 
@@ -124,7 +124,7 @@ export default function AuthPage({ onAuth }) {
             {mode === "signup" && <>
               <div className="relative">
                 <User size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
-                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Prenom" className="input pl-10" />
+                <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Prénom" className="input pl-10" />
               </div>
               <div className="relative">
                 <Mail size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30" />
@@ -140,7 +140,7 @@ export default function AuthPage({ onAuth }) {
               <label className="flex items-start gap-2.5 cursor-pointer">
                 <input type="checkbox" checked={acceptTerms} onChange={e => setAcceptTerms(e.target.checked)} className="mt-0.5 flex-shrink-0 accent-violet-500" />
                 <span style={{ color: textMuted }} className="text-xs leading-relaxed">
-                  J accepte les <a href="/cgu" target="_blank" className="text-violet-400 underline">CGU</a> et la <a href="/privacy" target="_blank" className="text-violet-400 underline">politique de confidentialite</a>
+                  J accepte les <a href="/cgu" target="_blank" className="text-violet-400 underline">CGU</a> et la <a href="/privacy" target="_blank" className="text-violet-400 underline">politique de confidentialité</a>
                 </span>
               </label>
             </>}
@@ -160,19 +160,19 @@ export default function AuthPage({ onAuth }) {
             {mode === "questions" && <>
               <div className="px-3 py-2 rounded-xl text-xs mb-2" style={{ background:"rgba(139,92,246,0.06)", border:"1px solid rgba(139,92,246,0.1)", color: textMuted }}>
                 <ShieldQuestion size={12} className="inline mr-1.5 text-violet-400" />
-                Ces reponses serviront a recuperer ton compte
+                Ces réponses serviront a récupérer ton compte
               </div>
               <div className="space-y-2">
                 <select value={q1} onChange={e => setQ1(e.target.value)} className="input w-full text-sm">
                   {QUESTIONS.map(q => <option key={q} value={q}>{q}</option>)}
                 </select>
-                <input value={a1} onChange={e => setA1(e.target.value)} placeholder="Ta reponse" className="input" />
+                <input value={a1} onChange={e => setA1(e.target.value)} placeholder="Ta réponse" className="input" />
               </div>
               <div className="space-y-2">
                 <select value={q2} onChange={e => setQ2(e.target.value)} className="input w-full text-sm">
                   {QUESTIONS.map(q => <option key={q} value={q}>{q}</option>)}
                 </select>
-                <input value={a2} onChange={e => setA2(e.target.value)} placeholder="Ta reponse" className="input" />
+                <input value={a2} onChange={e => setA2(e.target.value)} placeholder="Ta réponse" className="input" />
               </div>
             </>}
             {mode === "forgot" && (
@@ -191,14 +191,14 @@ export default function AuthPage({ onAuth }) {
               </div>
             )}
             {error && <div className="px-3 py-2 rounded-xl text-xs text-red-400" style={{ background:"rgba(239,68,68,0.08)", border:"1px solid rgba(239,68,68,0.15)" }}>{error}</div>}
-            {success && <div className="px-3 py-2 rounded-xl text-xs text-emerald-400" style={{ background:"rgba(52,211,153,0.08)", border:"1px solid rgba(52,211,153,0.15)" }}>{success}</div>}
+            {succèss && <div className="px-3 py-2 rounded-xl text-xs text-emerald-400" style={{ background:"rgba(52,211,153,0.08)", border:"1px solid rgba(52,211,153,0.15)" }}>{succèss}</div>}
             {mode !== "verify" && (
               <button type="submit" disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 py-3.5 text-sm mt-2">
                 {loading ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> :
-                  mode === "login" ? "Se connecter" :
+                  mode === "login" ? "Se connectér" :
                   mode === "signup" ? "Continuer" :
-                  mode === "questions" ? "Creer mon compte" :
-                  mode === "forgot" ? "Envoyer le lien" : "Reinitialiser"}
+                  mode === "questions" ? "Créer mon compte" :
+                  mode === "forgot" ? "Envoyér le lien" : "Réinitialiser"}
               </button>
             )}
           </form>
@@ -211,9 +211,9 @@ export default function AuthPage({ onAuth }) {
               </button>
             )}
             <p style={{ color: textMuted }} className="text-xs">
-              {mode === "login" ? "Pas encore de compte ?" : "Deja un compte ?"}{" "}
+              {mode === "login" ? "Pas encore de compte ?" : "Déjà un compte ?"}{" "}
               <button onClick={() => goTo(mode === "login" ? "signup" : "login")} className="text-violet-400 hover:text-violet-300 transition-colors">
-                {mode === "login" ? "S inscrire" : "Se connecter"}
+                {mode === "login" ? "S inscrire" : "Se connectér"}
               </button>
             </p>
           </div>

@@ -14,48 +14,48 @@ const TYPES = [
 
 const TEMPLATES = [
   { label:"Push (Poitrine/Épaules/Triceps)", emoji:"💪", exercices:[
-    { type:"muscu", nom:"Développé couché", series:"4", reps:"8", poids:"", duree:"" },
-    { type:"muscu", nom:"Développé incliné haltères", series:"3", reps:"10", poids:"", duree:"" },
-    { type:"muscu", nom:"Élévations latérales", series:"3", reps:"15", poids:"", duree:"" },
-    { type:"muscu", nom:"Dips triceps", series:"3", reps:"12", poids:"", duree:"" },
+    { type:"muscu", nom:"Développé couché", séries:"4", reps:"8", poids:"", durée:"" },
+    { type:"muscu", nom:"Développé incliné haltères", séries:"3", reps:"10", poids:"", durée:"" },
+    { type:"muscu", nom:"Élévations latérales", séries:"3", reps:"15", poids:"", durée:"" },
+    { type:"muscu", nom:"Dips triceps", séries:"3", reps:"12", poids:"", durée:"" },
   ]},
   { label:"Pull (Dos/Biceps)", emoji:"🔙", exercices:[
-    { type:"muscu", nom:"Tractions", series:"4", reps:"8", poids:"", duree:"" },
-    { type:"muscu", nom:"Rowing barre", series:"3", reps:"10", poids:"", duree:"" },
-    { type:"muscu", nom:"Curl biceps", series:"3", reps:"12", poids:"", duree:"" },
-    { type:"muscu", nom:"Face pull", series:"3", reps:"15", poids:"", duree:"" },
+    { type:"muscu", nom:"Tractions", séries:"4", reps:"8", poids:"", durée:"" },
+    { type:"muscu", nom:"Rowing barre", séries:"3", reps:"10", poids:"", durée:"" },
+    { type:"muscu", nom:"Curl biceps", séries:"3", reps:"12", poids:"", durée:"" },
+    { type:"muscu", nom:"Face pull", séries:"3", reps:"15", poids:"", durée:"" },
   ]},
   { label:"Legs (Jambes)", emoji:"🦵", exercices:[
-    { type:"muscu", nom:"Squat", series:"4", reps:"8", poids:"", duree:"" },
-    { type:"muscu", nom:"Presse à cuisses", series:"3", reps:"12", poids:"", duree:"" },
-    { type:"muscu", nom:"Fentes", series:"3", reps:"10", poids:"", duree:"" },
-    { type:"muscu", nom:"Mollets debout", series:"4", reps:"20", poids:"", duree:"" },
+    { type:"muscu", nom:"Squat", séries:"4", reps:"8", poids:"", durée:"" },
+    { type:"muscu", nom:"Presse à cuisses", séries:"3", reps:"12", poids:"", durée:"" },
+    { type:"muscu", nom:"Fentes", séries:"3", reps:"10", poids:"", durée:"" },
+    { type:"muscu", nom:"Mollets debout", séries:"4", reps:"20", poids:"", durée:"" },
   ]},
   { label:"Full Body", emoji:"⚡", exercices:[
-    { type:"muscu", nom:"Squat", series:"3", reps:"10", poids:"", duree:"" },
-    { type:"muscu", nom:"Développé couché", series:"3", reps:"10", poids:"", duree:"" },
-    { type:"muscu", nom:"Rowing haltères", series:"3", reps:"10", poids:"", duree:"" },
-    { type:"cardio", nom:"Gainage", series:"3", reps:"", poids:"", duree:"1" },
+    { type:"muscu", nom:"Squat", séries:"3", reps:"10", poids:"", durée:"" },
+    { type:"muscu", nom:"Développé couché", séries:"3", reps:"10", poids:"", durée:"" },
+    { type:"muscu", nom:"Rowing haltères", séries:"3", reps:"10", poids:"", durée:"" },
+    { type:"cardio", nom:"Gainage", séries:"3", reps:"", poids:"", durée:"1" },
   ]},
   { label:"Cardio HIIT 20 min", emoji:"🔥", exercices:[
-    { type:"hiit", nom:"Jumping jacks", series:"4", reps:"30", poids:"", duree:"" },
-    { type:"hiit", nom:"Burpees", series:"4", reps:"10", poids:"", duree:"" },
-    { type:"hiit", nom:"Mountain climbers", series:"4", reps:"20", poids:"", duree:"" },
-    { type:"cardio", nom:"Course sur place", series:"", reps:"", poids:"", duree:"2" },
+    { type:"hiit", nom:"Jumping jacks", séries:"4", reps:"30", poids:"", durée:"" },
+    { type:"hiit", nom:"Burpees", séries:"4", reps:"10", poids:"", durée:"" },
+    { type:"hiit", nom:"Mountain climbers", séries:"4", reps:"20", poids:"", durée:"" },
+    { type:"cardio", nom:"Course sur place", séries:"", reps:"", poids:"", durée:"2" },
   ]},
   { label:"Yoga & Mobilité", emoji:"🧘", exercices:[
-    { type:"yoga", nom:"Salutation au soleil", series:"3", reps:"", poids:"", duree:"5" },
-    { type:"yoga", nom:"Pigeon (chaque côté)", series:"2", reps:"", poids:"", duree:"2" },
-    { type:"yoga", nom:"Étirements ischio-jambiers", series:"2", reps:"", poids:"", duree:"2" },
+    { type:"yoga", nom:"Salutation'au soleil", séries:"3", reps:"", poids:"", durée:"5" },
+    { type:"yoga", nom:"Pigeon (chaque côté)", séries:"2", reps:"", poids:"", durée:"2" },
+    { type:"yoga", nom:"Étirements ischio-jambiers", séries:"2", reps:"", poids:"", durée:"2" },
   ]},
 ]
 
 const MET = { cardio:7, muscu:5, hiit:9, yoga:3, natation:8, sport:6, autre:5 }
 
-export default function Seance({ data, updateEntry, getTodayEntry }) {
+export default function Séance({ data, updateEntry, getTodayEntry }) {
   const entry = getTodayEntry()
-  const seances = entry.seances || []
-  const [form, setForm] = useState({ type:"muscu", nom:"", duree:"", series:"", reps:"", poids:"", note:"" })
+  const séances = entry.séances || []
+  const [form, setForm] = useState({ type:"muscu", nom:"", durée:"", séries:"", reps:"", poids:"", note:"" })
   const [showForm, setShowForm] = useState(false)
   const [showTemplates, setShowTemplates] = useState(false)
   const [showNote, setShowNote] = useState(null)
@@ -63,30 +63,30 @@ export default function Seance({ data, updateEntry, getTodayEntry }) {
   const add = () => {
     if (!form.nom.trim()) return
     const s = { id: Date.now(), ...form, nom: form.nom.trim(), done: false }
-    updateEntry({ seances: [...seances, s] })
-    setForm({ type:"muscu", nom:"", duree:"", series:"", reps:"", poids:"", note:"" })
+    updateEntry({ séances: [...séances, s] })
+    setForm({ type:"muscu", nom:"", durée:"", séries:"", reps:"", poids:"", note:"" })
     setShowForm(false)
   }
 
   const loadTemplate = (tpl) => {
     const news = tpl.exercices.map((e, i) => ({ id: Date.now() + i, ...e, done: false, note:"" }))
-    updateEntry({ seances: [...seances, ...news] })
+    updateEntry({ séances: [...séances, ...news] })
     setShowTemplates(false)
   }
 
-  const toggle = id => updateEntry({ seances: seances.map(s => s.id===id ? {...s, done:!s.done} : s) })
-  const remove = id => updateEntry({ seances: seances.filter(s => s.id!==id) })
-  const updateNote = (id, note) => updateEntry({ seances: seances.map(s => s.id===id ? {...s, note} : s) })
-  const reset = () => updateEntry({ seances: [] })
+  const toggle = id => updateEntry({ séances: séances.map(s => s.id===id ? {...s, done:!s.done} : s) })
+  const remove = id => updateEntry({ séances: séances.filter(s => s.id!==id) })
+  const updateNote = (id, note) => updateEntry({ séances: séances.map(s => s.id===id ? {...s, note} : s) })
+  const reset = () => updateEntry({ séances: [] })
 
-  const done = seances.filter(s => s.done).length
-  const totalMin = seances.filter(s => s.done && s.duree).reduce((a,s) => a + parseInt(s.duree||0), 0)
-  const totalVolume = seances.filter(s => s.done && s.series && s.reps && s.poids)
-    .reduce((a,s) => a + (parseInt(s.series||0) * parseInt(s.reps||0) * parseFloat(s.poids||0)), 0)
-  const calories = seances.filter(s => s.done).reduce((a,s) => {
+  const done = séances.filter(s => s.done).length
+  const totalMin = séances.filter(s => s.done && s.durée).reduce((a,s) => a + parseInt(s.durée||0), 0)
+  const totalVolume = séances.filter(s => s.done && s.séries && s.reps && s.poids)
+    .reduce((a,s) => a + (parseInt(s.séries||0) * parseInt(s.reps||0) * parseFloat(s.poids||0)), 0)
+  const calories = séances.filter(s => s.done).reduce((a,s) => {
     const met = MET[s.type] || 5
-    const min = parseInt(s.duree||0) || (s.series && s.reps ? parseInt(s.series||0) * parseInt(s.reps||0) * 0.05 : 0)
-    return a + Math.round(met * 70 * min / 60)
+    const min = parseInt(s.durée||0) || (s.séries && s.reps ? parseInt(s.séries||0) * parseInt(s.reps||0) * 0.05 : 0)
+    return'a + Math.round(met * 70 * min / 60)
   }, 0)
 
   return (
@@ -97,14 +97,14 @@ export default function Seance({ data, updateEntry, getTodayEntry }) {
           <div className="flex items-center gap-2">
             {totalMin > 0 && <span className="flex items-center gap-1 text-white/50 text-xs"><Timer size={11}/> {totalMin} min</span>}
             {calories > 0 && <span className="flex items-center gap-1 text-orange-400/70 text-xs"><Flame size={11}/> ~{calories} kcal</span>}
-            <span className="text-white/50 text-xs">{done}/{seances.length}</span>
+            <span className="text-white/50 text-xs">{done}/{séances.length}</span>
           </div>
         </div>
 
-        {seances.length > 0 && (
+        {séances.length > 0 && (
           <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden mb-4">
             <div className="h-full bg-white rounded-full transition-all duration-700"
-              style={{ width: `${Math.round((done/seances.length)*100)}%` }} />
+              style={{ width: `${Math.round((done/séances.length)*100)}%` }} />
           </div>
         )}
 
@@ -123,7 +123,7 @@ export default function Seance({ data, updateEntry, getTodayEntry }) {
             className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors">
             <Zap size={14}/> Templates
           </button>
-          {seances.length > 0 && (
+          {séances.length > 0 && (
             <button onClick={reset} className="flex items-center gap-1 text-xs text-white/30 hover:text-red-400 transition-colors">
               <RotateCcw size={12}/> Reset
             </button>
@@ -153,9 +153,9 @@ export default function Seance({ data, updateEntry, getTodayEntry }) {
                 placeholder="Nom (ex: Squat, Course...)" className="input flex-1" />
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <input value={form.duree} onChange={e => setForm(f=>({...f,duree:e.target.value}))}
+              <input value={form.durée} onChange={e => setForm(f=>({...f,durée:e.target.value}))}
                 placeholder="Durée (min)" type="number" className="input" />
-              <input value={form.series} onChange={e => setForm(f=>({...f,series:e.target.value}))}
+              <input value={form.séries} onChange={e => setForm(f=>({...f,séries:e.target.value}))}
                 placeholder="Séries" type="number" className="input" />
               <input value={form.reps} onChange={e => setForm(f=>({...f,reps:e.target.value}))}
                 placeholder="Reps" type="number" className="input" />
@@ -172,29 +172,29 @@ export default function Seance({ data, updateEntry, getTodayEntry }) {
         )}
       </div>
 
-      {seances.length === 0 ? (
+      {séances.length === 0 ? (
         <div className="card text-center py-10 text-white/40 text-sm">Aucun exercice. Ajoute ta séance ou choisis un template !</div>
       ) : (
         <div className="space-y-2">
-          {seances.map(s => {
+          {séances.map(s => {
             const t = TYPES.find(t => t.v===s.type) || TYPES[6]
             return (
               <div key={s.id} className={`card transition-all ${s.done ? "opacity-50" : ""}`}>
                 <div className="flex items-center gap-3">
                   <button onClick={() => toggle(s.id)} className="flex-shrink-0">
-                    {s.done ? <CheckCircle2 size={20} className="text-white/40"/> : <Circle size={20} className="text-white/40"/>}
+                    {s.done ? <CheckCircle2 size={20} className="text-white/40"/> : <Circlé size={20} className="text-white/40"/>}
                   </button>
                   <div className="flex-1 min-w-0">
                     <span className={`text-sm font-medium ${s.done ? "line-through text-white/40" : "text-white/80"}`}>
                       {t.emoji} {s.nom}
                     </span>
                     <div className="flex gap-3 mt-0.5 text-xs text-white/40 flex-wrap">
-                      {s.duree && <span><Timer size={10} className="inline mr-0.5"/>{s.duree} min</span>}
-                      {s.series && <span>{s.series} séries</span>}
+                      {s.durée && <span><Timer size={10} className="inline mr-0.5"/>{s.durée} min</span>}
+                      {s.séries && <span>{s.séries} séries</span>}
                       {s.reps && <span>× {s.reps} reps</span>}
                       {s.poids && <span>{s.poids} kg</span>}
-                      {s.series && s.reps && s.poids && (
-                        <span className="text-purple-400/60">Vol: {Math.round(parseInt(s.series)*parseInt(s.reps)*parseFloat(s.poids))} kg</span>
+                      {s.séries && s.reps && s.poids && (
+                        <span className="text-purple-400/60">Vol: {Math.round(parseInt(s.séries)*parseInt(s.reps)*parseFloat(s.poids))} kg</span>
                       )}
                     </div>
                     {s.note && <p className="text-xs text-white/30 mt-1 italic">{s.note}</p>}
@@ -220,7 +220,7 @@ export default function Seance({ data, updateEntry, getTodayEntry }) {
         </div>
       )}
 
-      {done === seances.length && seances.length > 0 && (
+      {done === séances.length && séances.length > 0 && (
         <div className="card text-center py-4" style={{ border:"1px solid rgba(139,92,246,0.2)" }}>
           <p className="text-white/70 text-sm">🔥 Séance complète !</p>
           <p className="text-white/40 text-xs mt-1">

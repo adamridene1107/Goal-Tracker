@@ -68,7 +68,7 @@ export default function AmbientSound() {
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-white/70 text-sm font-semibold">Son ambiant</h3>
+        <h3 className="text-white/70 text-sm font-semibold">Son'ambiant</h3>
         {active && <button onClick={stop} className="text-white/40 hover:text-white/60 transition-colors"><VolumeX size={14}/></button>}
       </div>
       <div className="flex gap-2 flex-wrap mb-3">
