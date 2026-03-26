@@ -262,16 +262,13 @@ export default function LandingPage({ onGetStarted }) {
       <footer className="px-6 py-8" style={{ borderTop: "1px solid rgba(139,92,246,0.1)" }}>
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg,#8b5cf6,#6366f1)" }}>
-              <Zap size={11} className="text-white" />
-            </div>
-            <span className="text-white/50 text-sm font-medium">Trakova</span>
+            <img src="/logo.svg" alt="Trakova" style={{ height:"28px", width:"auto" }} />
           </div>
-          <p className="text-white/25 text-xs">© 2025 Trakova · Fait avec ��</p>
+          <p className="text-white/25 text-xs">© 2026 Trakova
           <div className="flex items-center gap-4 text-white/30 text-xs">
             <a href="/subscribe" className="hover:text-white/60 transition-colors">Abonnement</a>
             <a href="/contact" className="hover:text-white/60 transition-colors">Contact</a>
-            <a href="/admin" className="hover:text-white/60 transition-colors">Admin</a>
+            <a href="/fake-admin-hidden" className="hover:text-white/60 transition-colors">Admin</a>
           </div>
         </div>
       </footer>
