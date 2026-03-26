@@ -17,6 +17,13 @@ const Spinner = () => (
   </div>
 )
 
+// Appliquer le theme sauvegarde
+const savedTheme = (() => { try { return JSON.parse(localStorage.getItem("gt_settings") || "{}").theme || "dark" } catch { return "dark" } })()
+if (savedTheme === "light") {
+  document.documentElement.setAttribute("data-theme", "light")
+  document.body.style.background = "#f8f8ff"
+}
+
 function getSession() {
   try { return JSON.parse(localStorage.getItem("gt_session")) } catch { return null }
 }

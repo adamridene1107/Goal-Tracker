@@ -2,6 +2,71 @@
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
 
 @tailwind base;
+
+[data-theme="light"] {
+  --bg: #f4f4f8;
+  --bg-card: rgba(255,255,255,0.9);
+  --bg-header: rgba(244,244,248,0.95);
+  --text: #1a1a2e;
+  --text-muted: rgba(26,26,46,0.5);
+  --border: rgba(0,0,0,0.08);
+  --border-accent: rgba(139,92,246,0.2);
+}
+
+[data-theme="light"] body {
+  background: #f4f4f8 !important;
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .card {
+  background: rgba(255,255,255,0.9) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+  color: #1a1a2e;
+}
+
+[data-theme="light"] .text-white {
+  color: #1a1a2e !important;
+}
+
+[data-theme="light"] .text-white\/80,
+[data-theme="light"] .text-white\/70 {
+  color: rgba(26,26,46,0.8) !important;
+}
+
+[data-theme="light"] .text-white\/50,
+[data-theme="light"] .text-white\/40,
+[data-theme="light"] .text-white\/30 {
+  color: rgba(26,26,46,0.5) !important;
+}
+
+[data-theme="light"] .input {
+  background: rgba(0,0,0,0.04) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+  color: #1a1a2e !important;
+}
+
+[data-theme="light"] .nav-tab {
+  color: rgba(26,26,46,0.5) !important;
+}
+
+[data-theme="light"] .nav-tab.active {
+  color: #8b5cf6 !important;
+  border-color: #8b5cf6 !important;
+}
+
+[data-theme="light"] .btn-ghost {
+  color: rgba(26,26,46,0.6) !important;
+}
+
+[data-theme="light"] .btn-ghost:hover {
+  background: rgba(0,0,0,0.06) !important;
+  color: #1a1a2e !important;
+}
+
+[data-theme="light"] .min-h-screen {
+  background: #f4f4f8 !important;
+}
+
 @tailwind components;
 @tailwind utilities;
 
