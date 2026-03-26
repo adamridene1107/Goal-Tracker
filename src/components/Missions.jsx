@@ -47,7 +47,7 @@ export default function Missions({ data, updateMissions }) {
   const grouped = CATS.reduce((a, c) => {
     const items = missions.filter(m => m.category === c)
     if (items.length) a[c] = items
-    return'a
+    return a
   }, {})
 
   return (

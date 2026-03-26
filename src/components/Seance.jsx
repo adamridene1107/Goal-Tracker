@@ -86,7 +86,7 @@ export default function Séance({ data, updateEntry, getTodayEntry }) {
   const calories = séances.filter(s => s.done).reduce((a,s) => {
     const met = MET[s.type] || 5
     const min = parseInt(s.durée||0) || (s.séries && s.reps ? parseInt(s.séries||0) * parseInt(s.reps||0) * 0.05 : 0)
-    return'a + Math.round(met * 70 * min / 60)
+    return a + Math.round(met * 70 * min / 60)
   }, 0)
 
   return (

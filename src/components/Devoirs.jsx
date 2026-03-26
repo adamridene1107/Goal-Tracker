@@ -86,14 +86,14 @@ export default function Devoirs({ devoirs, updateDevoirs, goalId = "homework" })
     if (filterMat !== "all" && d.matiere !== filterMat) return false
     return true
   }).sort((a, b) => {
-    if (a.done !== b.done) return'a.done ? 1 : -1
+    if (a.done !== b.done) return a.done ? 1 : -1
     const pa = PRIOS.findIndex(p => p.v === a.priority)
     const pb = PRIOS.findIndex(p => p.v === b.priority)
     if (pa !== pb) return pa - pb
     if (!a.date && !b.date) return 0
     if (!a.date) return 1
     if (!b.date) return -1
-    return'a.date.localeCompare(b.date)
+    return a.date.localeCompare(b.date)
   })
 
   const urgentCount = devoirs.filter(d => !d.done && d.date && (isToday(parseISO(d.date)) || isPast(parseISO(d.date)))).length
