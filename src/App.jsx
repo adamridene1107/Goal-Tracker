@@ -17,7 +17,7 @@ import Idees from "./components/Idees"
 import { useGamification } from "./hooks/useGamification"
 import { getGoalById } from "./lib/goals"
 import { parseISO, isToday, isPast } from "date-fns"
-import { CheckSquare, Target, Calendar, BarChart2, BookOpen, ClipboardList, Settings, X, Flame, FolderOpen, Zap, LogOut, Dumbbell, Lightbulb, Apple, ListTodo } from "lucide-react"
+import { CheckSquare, Target, Calendar, BarChart2, BookOpen, ClipboardList, Settings, X, Flame, FolderOpen, Zap, LogOut, Dumbbell, Lightbulb, Apple, ListTodo, RefreshCw } from "lucide-react"
 
 const TABS_BY_GOAL = {
   homework: [
@@ -119,8 +119,8 @@ export default function App({ user, onLogout }) {
           </div>
           <div className="flex items-center gap-1">
             <ExportPDF data={data} />
+            <button onClick={() => { resetGoal() }} className="btn-ghost" title="Changer d'objectif"><RefreshCw size={16} /></button>
             <button onClick={() => setShowSettings(true)} className="btn-ghost"><Settings size={16} /></button>
-            <button onClick={onLogout} className="btn-ghost" title="Déconnexion"><LogOut size={16} /></button>
           </div>
         </div>
         <nav className="max-w-2xl mx-auto flex overflow-x-auto gap-0 -mb-px scrollbar-hide">

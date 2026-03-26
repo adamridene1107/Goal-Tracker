@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react"
 import { User, Bell, Palette, Target, Shield, CreditCard, ChevronRight, Check, Download, Trash2, X, LogOut } from "lucide-react"
 
-const ACCENT_COLORS = [
-  { id:"violet", label:"Violet", color:"#8b5cf6" },
-  { id:"blue",   label:"Bleu",   color:"#3b82f6" },
-  { id:"green",  label:"Vert",   color:"#10b981" },
-  { id:"orange", label:"Orange", color:"#f97316" },
-  { id:"pink",   label:"Rose",   color:"#ec4899" },
-  { id:"red",    label:"Rouge",  color:"#ef4444" },
-]
+
 
 function Toast({ msg, onClose }) {
   useEffect(() => { const t = setTimeout(onClose, 2500); return () => clearTimeout(t) }, [])
@@ -63,7 +56,7 @@ export default function SettingsPage({ user, data, onLogout, resetGoal, onClose 
   const [notifWeekly, setNotifWeekly] = useState(settings.notifWeekly ?? false)
   const [notifStreak, setNotifStreak] = useState(settings.notifStreak ?? true)
 
-  const [accent, setAccent] = useState(settings.accent || "violet")
+  const [theme, setTheme] = useState(settings.theme || "dark")
   const [streakGoal, setStreakGoal] = useState(settings.streakGoal || 7)
 
   const [deleteConfirm, setDeleteConfirm] = useState(0)
@@ -115,12 +108,18 @@ export default function SettingsPage({ user, data, onLogout, resetGoal, onClose 
     toast_("Notifications sauvegardées")
   }
 
-  const applyAccent = (id) => {
-    setAccent(id)
-    saveSettings({ ...getSettings(), accent: id })
-    const c = ACCENT_COLORS.find(a => a.id === id)?.color || "#8b5cf6"
-    document.documentElement.style.setProperty("--accent", c)
-    toast_("Couleur appliquée")
+  const applyTheme = (t) => {
+    setTheme(t)
+    saveSettings({ ...getSettings(), theme: t })
+    document.documentElement.setAttribute("data-theme", t)
+    if (t === "light") {
+      document.documentElement.style.setProperty("--bg", "#f8f8ff")
+      document.body.style.background = "#f8f8ff"
+    } else {
+      document.documentElement.style.setProperty("--bg", "#0A0A0F")
+      document.body.style.background = "#0A0A0F"
+    }
+    toast_(t === "dark" ? "Thème sombre activé" : "Thème clair activé")
   }
 
   const saveObjectifs = () => {
@@ -176,11 +175,7 @@ export default function SettingsPage({ user, data, onLogout, resetGoal, onClose 
                 <s.icon size={13}/> {s.label}
               </button>
             ))}
-            <div className="pt-3 mt-3" style={{ borderTop:"1px solid rgba(255,255,255,0.06)" }}>
-              <button onClick={onLogout} className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs text-red-400/60 hover:text-red-400 transition-colors">
-                <LogOut size={13}/> Déconnexion
-              </button>
-            </div>
+
           </div>
 
           {/* Content */}
@@ -205,6 +200,12 @@ export default function SettingsPage({ user, data, onLogout, resetGoal, onClose 
                   <input type="password" value={confirmPwd} onChange={e => setConfirmPwd(e.target.value)} className="input w-full" placeholder="Confirmer" />
                   {pwdError && <p className="text-red-400 text-xs">{pwdError}</p>}
                   <button onClick={savePassword} className="btn-outline text-sm py-2 px-4">Mettre à jour</button>
+                </div>
+                <div className="pt-4" style={{ borderTop:"1px solid rgba(255,255,255,0.06)" }}>
+                  <button onClick={onLogout} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-sm text-red-400/70 hover:text-red-400 transition-colors"
+                    style={{ border:"1px solid rgba(239,68,68,0.15)", background:"rgba(239,68,68,0.05)" }}>
+                    <LogOut size={14}/> Se déconnecter
+                  </button>
                 </div>
               </Section>
             )}
@@ -247,16 +248,20 @@ export default function SettingsPage({ user, data, onLogout, resetGoal, onClose 
             {section === "apparence" && (
               <Section icon={Palette} title="Apparence">
                 <div>
-                  <p className="text-white/40 text-xs mb-3">Couleur d'accentuation</p>
-                  <div className="flex gap-2 flex-wrap">
-                    {ACCENT_COLORS.map(a => (
-                      <button key={a.id} onClick={() => applyAccent(a.id)}
-                        className="flex flex-col items-center gap-1.5 p-2 rounded-xl transition-all"
-                        style={{ border: accent===a.id ? `2px solid ${a.color}` : "2px solid transparent", background: accent===a.id ? `${a.color}15` : "rgba(255,255,255,0.04)" }}>
-                        <div className="w-7 h-7 rounded-full" style={{ background: a.color }} />
-                        <span className="text-white/40 text-[10px]">{a.label}</span>
-                      </button>
-                    ))}
+                  <p className="text-white/40 text-xs mb-3">Thème</p>
+                  <div className="flex gap-3">
+                    <button onClick={() => applyTheme("dark")}
+                      className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl transition-all"
+                      style={{ border: theme==="dark" ? "2px solid #8b5cf6" : "2px solid rgba(255,255,255,0.08)", background: theme==="dark" ? "rgba(139,92,246,0.1)" : "rgba(255,255,255,0.03)" }}>
+                      <div className="w-10 h-7 rounded-lg" style={{ background:"#0A0A0F", border:"1px solid rgba(255,255,255,0.1)" }}/>
+                      <span className="text-white/60 text-xs">Sombre</span>
+                    </button>
+                    <button onClick={() => applyTheme("light")}
+                      className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl transition-all"
+                      style={{ border: theme==="light" ? "2px solid #8b5cf6" : "2px solid rgba(255,255,255,0.08)", background: theme==="light" ? "rgba(139,92,246,0.1)" : "rgba(255,255,255,0.03)" }}>
+                      <div className="w-10 h-7 rounded-lg" style={{ background:"#f8f8ff", border:"1px solid rgba(0,0,0,0.1)" }}/>
+                      <span className="text-white/60 text-xs">Clair</span>
+                    </button>
                   </div>
                 </div>
               </Section>
