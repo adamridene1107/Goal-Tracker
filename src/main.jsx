@@ -1,5 +1,6 @@
 import React, { useState, lazy, Suspense, useEffect } from "react"
 import { ThemeProvider } from "./context/ThemeContext"
+import { LangProvider } from "./context/LangContext"
 import { supabase } from "./lib/supabase"
 import ReactDOM from "react-dom/client"
 import "./index.css"
@@ -80,5 +81,5 @@ function Root() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode><ThemeProvider><Root /></ThemeProvider></React.StrictMode>
+  <React.StrictMode><LangProvider><ThemeProvider><Root /></ThemeProvider></LangProvider></React.StrictMode>
 )

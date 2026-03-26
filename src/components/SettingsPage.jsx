@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import LangSwitcher from "./LangSwitcher"
+import { Globe } from "lucide-react"
 import { useThème } from "../context/ThèmeContext"
 import { User, Bell, Palette, Target, Shield, CreditCard, ChevronRight, Check, Download, Trash2, X, LogOut } from "lucide-react"
 
@@ -324,6 +326,12 @@ export default function SettingsPage({ user, data, onLogout, resetGoal, onClose 
               </Section>
             )}
 
+            {section === "langue" && (
+              <Section icon={Globe} title="Langue">
+                <p className="text-white/40 text-xs mb-4">Choisir la langue de l'application</p>
+                <LangSwitcher />
+              </Section>
+            )}
             {section === "abo" && (
               <Section icon={CreditCard} title="Abonnément">
                 <div className="space-y-4">
