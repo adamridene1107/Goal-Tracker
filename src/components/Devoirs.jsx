@@ -1,6 +1,6 @@
 ﻿import { useState, useEffect } from "react"
 import { Plus, Trash2, CheckCircle2, Circle, Calendar, ChevronDown, ChevronUp, Pencil, Bell, Flag } from "lucide-react"
-import { getCatégoriesForGoal } from "../lib/catégories"
+import { getCatégoriesForGoal } from "../lib/categories"
 import { format, isPast, isToday, isTomorrow, parseISO, differenceInDays } from "date-fns"
 import { fr } from "date-fns/locale"
 
