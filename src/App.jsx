@@ -179,17 +179,17 @@ export default function App({ user, onLogout }) {
       </header>
 
       <main className="max-w-2xl mx-auto p-4 pb-8"><Suspense fallback={<div className="flex items-center justify-center py-20"><div className="w-6 h-6 border-2 border-white/20 border-t-white/60 rounded-full animate-spin"/></div>}>
-        <div key={activeTab} className={activeTab === "today" ? "tab-content" : "hidden"}><Suspense fallback={null}><WeekSummary data={data} /></Suspense><Suspense fallback={null}><AmbientSound /></Suspense><DailyCheck data={data} today={today} getTodayEntry={getTodayEntry} toggleTask={toggleTask} updateEntry={updateEntry} onTaskComplete={handleTaskComplete} onFocusComplete={onFocusComplete} showPomodoro={data.goal === "homework"} /></div>
-        <div key={activeTab} className={activeTab === "seance" ? "tab-content" : "hidden"}><Seance data={data} updateEntry={updateEntry} getTodayEntry={getTodayEntry} /></div>
-        <div key={activeTab} className={activeTab === "idees" ? "tab-content" : "hidden"}><Idees /></div>
-        <div key={activeTab} className={activeTab === "devoirs" ? "tab-content" : "hidden"}><Devoirs devoirs={data.devoirs || []} updateDevoirs={updateDevoirs} goalId={data.goal} /></div>
-        <div key={activeTab} className={activeTab === "missions" ? "tab-content" : "hidden"}><Missions data={data} updateMissions={updateMissions} /></div>
-        <div key={activeTab} className={activeTab === "resources" ? "tab-content" : "hidden"}><Resources goalId={data.goal} /></div>
-        <div key={activeTab} className={activeTab === "calendar" ? "tab-content" : "hidden"}><ProgressCalendar data={data} /></div>
-        <div key={activeTab} className={activeTab === "stats" ? "tab-content" : "hidden"}><ProgressChart data={data} /></div>
-        <div key={activeTab} className={activeTab === "fichiers" ? "tab-content" : "hidden"}><MesFichiers goalId={data.goal} /></div>
-        <div key={activeTab} className={activeTab === "xp" ? "tab-content" : "hidden"}><Gamification /></div>
-        <div key={activeTab} className={activeTab === "history" ? "tab-content" : "hidden"}><HistoryPage data={data} /></div>
+        <div className={activeTab === "today" ? "tab-content" : "hidden"}><Suspense fallback={null}><WeekSummary data={data} /></Suspense><Suspense fallback={null}><AmbientSound /></Suspense><DailyCheck data={data} today={today} getTodayEntry={getTodayEntry} toggleTask={toggleTask} updateEntry={updateEntry} onTaskComplete={handleTaskComplete} onFocusComplete={onFocusComplete} showPomodoro={data.goal === "homework"} /></div>
+        <div className={activeTab === "seance" ? "tab-content" : "hidden"}><Seance data={data} updateEntry={updateEntry} getTodayEntry={getTodayEntry} /></div>
+        <div className={activeTab === "idees" ? "tab-content" : "hidden"}><Idees /></div>
+        <div className={activeTab === "devoirs" ? "tab-content" : "hidden"}><Devoirs devoirs={data.devoirs || []} updateDevoirs={updateDevoirs} goalId={data.goal} /></div>
+        <div className={activeTab === "missions" ? "tab-content" : "hidden"}><Missions data={data} updateMissions={updateMissions} /></div>
+        <div className={activeTab === "resources" ? "tab-content" : "hidden"}><Resources goalId={data.goal} /></div>
+        <div className={activeTab === "calendar" ? "tab-content" : "hidden"}><ProgressCalendar data={data} /></div>
+        <div className={activeTab === "stats" ? "tab-content" : "hidden"}><ProgressChart data={data} /></div>
+        <div className={activeTab === "fichiers" ? "tab-content" : "hidden"}><MesFichiers goalId={data.goal} /></div>
+        <div className={activeTab === "xp" ? "tab-content" : "hidden"}><Gamification /></div>
+        <div className={activeTab === "history" ? "tab-content" : "hidden"}><HistoryPage data={data} /></div>
       </Suspense></main>
 
       {showFocus && (
