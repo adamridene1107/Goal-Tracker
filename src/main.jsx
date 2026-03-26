@@ -49,21 +49,17 @@ function Root() {
   // Loading session
   if (session === undefined) return <Spinner />
 
-  // Auth
-  if (path === "/login" || !session) {
-    if (session) { window.location.href = "/"; return null }
-    return (
+  // Pas connecte
+  if (!session) {
+    if (path === "/login") return (
       <Suspense fallback={<Spinner />}>
-        {path === "/login" || !session ? (
-          <AuthPage onAuth={(u, isNew) => {
-            if (isNew) window.location.href = "/subscribe"
-            else window.location.href = "/"
-          }} />
-        ) : (
-          <LandingPage onGetStarted={() => { window.location.href = "/login" }} />
-        )}
+        <AuthPage onAuth={(u, isNew) => {
+          if (isNew) window.location.href = "/subscribe"
+          else window.location.href = "/"
+        }} />
       </Suspense>
     )
+    return <Suspense fallback={<Spinner />}><LandingPage onGetStarted={() => { window.location.href = "/login" }} /></Suspense>
   }
 
   const user = { id: session.user.id, email: session.user.email, name: session.user.user_metadata?.name || session.user.email.split("@")[0] }
