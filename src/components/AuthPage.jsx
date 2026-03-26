@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTheme } from "../context/ThemeContext"
 import { Lock, Mail, User, Eye, EyeOff, ArrowLeft, Zap, ShieldQuestion } from "lucide-react"
 
 const QUESTIONS = [
@@ -16,6 +17,13 @@ function getUsers() { try { return JSON.parse(localStorage.getItem("gt_users") |
 function saveUsers(u) { localStorage.setItem("gt_users", JSON.stringify(u)) }
 
 export default function AuthPage({ onAuth }) {
+  const { theme } = useTheme()
+  const isDark = theme !== "light"
+  const pageBg = isDark ? "#0A0A0F" : "#f0f0f5"
+  const cardBg = isDark ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.95)"
+  const textPrimary = isDark ? "#ffffff" : "#1a1a2e"
+  const textMuted = isDark ? "rgba(255,255,255,0.4)" : "rgba(26,26,46,0.5)"
+  const borderColor = isDark ? "rgba(139,92,246,0.15)" : "rgba(0,0,0,0.1)"
   const [mode, setMode] = useState("login") // login | signup | questions | forgot | forgot-answer | reset
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
@@ -114,12 +122,12 @@ export default function AuthPage({ onAuth }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden" style={{ background: "#0A0A0F" }}>
+    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden" style={{ background: pageBg }}>
       <div className="glow-orb glow-orb-violet w-96 h-96 -top-20 -left-20 opacity-25" />
       <div className="glow-orb glow-orb-indigo w-64 h-64 bottom-10 right-10 opacity-15" />
       <div className="w-full max-w-sm relative fade-up">
         <button onClick={() => goTo(mode === "login" || mode === "signup" ? "login" : "login")}
-          className="inline-flex items-center gap-1.5 text-white/30 text-xs mb-8 hover:text-white/60 transition-colors">
+          style={{ color: textMuted }} className="inline-flex items-center gap-1.5 text-xs mb-8 transition-colors">
           <ArrowLeft size={12} />
           {mode === "login" || mode === "signup" ? <a href="/">Retour</a> : "Retour à la connexion"}
         </button>
@@ -129,15 +137,15 @@ export default function AuthPage({ onAuth }) {
             style={{ background: "linear-gradient(135deg,#8b5cf6,#6366f1)", boxShadow: "0 4px 16px rgba(139,92,246,0.4)" }}>
             <Zap size={16} className="text-white" />
           </div>
-          <span className="font-bold text-white text-base">Trakova</span>
+          <span style={{ color: textPrimary }} className="font-bold text-base">Trakova</span>
         </div>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-1">{titles[mode]?.h}</h1>
-          <p className="text-white/40 text-sm">{titles[mode]?.p}</p>
+          <h1 style={{ color: textPrimary }} className="text-3xl font-bold mb-1">{titles[mode]?.h}</h1>
+          <p style={{ color: textMuted }} className="text-sm">{titles[mode]?.p}</p>
         </div>
 
-        <div className="card-glass p-6">
+        <div className="card-glass p-6" style={{ background: cardBg, border: `1px solid ${borderColor}` }}>
           <form onSubmit={handleSubmit} className="space-y-4">
 
             {/* Signup */}
@@ -230,7 +238,7 @@ export default function AuthPage({ onAuth }) {
               <label className="flex items-start gap-2.5 cursor-pointer">
                 <input type="checkbox" checked={acceptTerms} onChange={e => setAcceptTerms(e.target.checked)}
                   className="mt-0.5 flex-shrink-0 accent-violet-500" />
-                <span className="text-white/40 text-xs leading-relaxed">
+                <span style={{ color: textMuted }} className="text-xs leading-relaxed">
                   J'accepte les{" "}
                   <a href="/cgu" target="_blank" className="text-violet-400 hover:text-violet-300 underline">CGU</a>
                   {" "}et la{" "}
@@ -260,7 +268,7 @@ export default function AuthPage({ onAuth }) {
                 Mot de passe oublié ?
               </button>
             )}
-            <p className="text-white/30 text-xs">
+            <p style={{ color: textMuted }} className="text-xs">
               {mode === "login" ? "Pas encore de compte ?" : "Déjà un compte ?"}{" "}
               <button onClick={() => goTo(mode === "login" ? "signup" : "login")} className="text-violet-400 hover:text-violet-300 transition-colors">
                 {mode === "login" ? "S'inscrire" : "Se connecter"}
