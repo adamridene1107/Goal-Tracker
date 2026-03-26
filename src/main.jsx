@@ -46,7 +46,7 @@ function Root() {
          else { setSession(u); window.location.href = "/" }
        }} /> :
        !session ? <LandingPage onGetStarted={() => { window.location.href = "/login" }} /> :
-       <App user={session} onLogout={() => { localStorage.removeItem("gt_session"); setSession(null) }} />}
+       <App user={session} onLogout={() => { localStorage.removeItem("gt_session"); const s = JSON.parse(localStorage.getItem("gt_settings")||"{}"); s.theme="dark"; localStorage.setItem("gt_settings",JSON.stringify(s)); document.documentElement.setAttribute("data-theme","dark"); document.body.style.background="#0A0A0F"; setSession(null) }} />}
     </Suspense>
   )
 }
