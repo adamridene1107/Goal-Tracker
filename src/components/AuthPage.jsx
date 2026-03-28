@@ -195,7 +195,7 @@ export default function AuthPage({ onAuth }) {
             {mode !== "verify" && (
               <button type="submit" disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 py-3.5 text-sm mt-2">
                 {loading ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> :
-                  mode === "login" ? "Se connectér" :
+                  mode === "login" ? "Se connecter" :
                   mode === "signup" ? "Continuer" :
                   mode === "questions" ? "Créer mon compte" :
                   mode === "forgot" ? "Envoyer le lien" : "Réinitialiser"}
@@ -213,7 +213,7 @@ export default function AuthPage({ onAuth }) {
             <p style={{ color: textMuted }} className="text-xs">
               {mode === "login" ? "Pas encore de compte ?" : "Déjà un compte ?"}{" "}
               <button onClick={() => goTo(mode === "login" ? "signup" : "login")} className="text-violet-400 hover:text-violet-300 transition-colors">
-                {mode === "login" ? "S inscrire" : "Se connectér"}
+                {mode === "login" ? "S inscrire" : "Se connecter"}
               </button>
             </p>
           </div>
