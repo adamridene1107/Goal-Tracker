@@ -12,13 +12,14 @@ const FEATURES = [
 
 export default function Subscription() {
   const [loading, setLoading] = useState(false)
+  const [plan, setPlan] = useState(() => new URLSearchParams(window.location.search).get("plan") || "monthly")
   const [error, setError] = useState(null)
 
   const handleSubscribe = async () => {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch("/api/create-checkout", { method: "POST" })
+      const res = await fetch("/api/create-checkout", { method: "POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ plan }) })
       const data = await res.json()
       if (data.url) { window.location.href = data.url }
       else { setError("Erreur lors de la création de la session.") }
@@ -43,12 +44,23 @@ export default function Subscription() {
           </span>
         </div>
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Accès complet</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">{plan === "yearly" ? "Offre annuelle" : "Accès complet"}</h1>
           <div className="flex items-end justify-center gap-2">
-            <span className="text-white/30 text-lg line-through mr-2">10€</span>
-            <span className="text-5xl font-bold gradient-text">6€</span>
-            <span className="text-white/40 text-sm mb-2">/mois</span>
-            <span className="px-2.5 py-1 rounded-full text-base font-black ml-2" style={{ background:"rgba(16,185,129,0.2)", color:"#34d399", border:"1px solid rgba(16,185,129,0.4)" }}>-40%</span>
+            {plan === "yearly" ? (
+              <>
+                <span className="text-white/30 text-lg line-through mr-2">72€</span>
+                <span className="text-5xl font-bold gradient-text">64€</span>
+                <span className="text-white/40 text-sm mb-2">/an</span>
+                <span className="px-2.5 py-1 rounded-full text-base font-black ml-2" style={{ background:"rgba(139,92,246,0.2)", color:"#a78bfa", border:"1px solid rgba(139,92,246,0.4)" }}>Annuel</span>
+              </>
+            ) : (
+              <>
+                <span className="text-white/30 text-lg line-through mr-2">10€</span>
+                <span className="text-5xl font-bold gradient-text">6€</span>
+                <span className="text-white/40 text-sm mb-2">/mois</span>
+                <span className="px-2.5 py-1 rounded-full text-base font-black ml-2" style={{ background:"rgba(16,185,129,0.2)", color:"#34d399", border:"1px solid rgba(16,185,129,0.4)" }}>-40%</span>
+              </>
+            )}
           </div>
           <div className="flex items-center gap-2 mt-2">
             <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background:"rgba(16,185,129,0.15)", color:"#34d399", border:"1px solid rgba(16,185,129,0.3)" }}>-40%</span>

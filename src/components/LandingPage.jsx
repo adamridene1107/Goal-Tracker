@@ -231,7 +231,7 @@ export default function LandingPage({ onGetStarted }) {
                   </div>
                   <p className="text-emerald-400 text-xs mt-1">Soit 5,33€/mois · Économise 8€</p>
                 </div>
-                <a href="/subscribe" className="btn-primary w-full flex items-center justify-center gap-2 py-3 text-sm" style={{ background:"linear-gradient(135deg,#8b5cf6,#6366f1)" }}>
+                <a href="/subscribe?plan=yearly" className="btn-primary w-full flex items-center justify-center gap-2 py-3 text-sm" style={{ background:"linear-gradient(135deg,#8b5cf6,#6366f1)" }}>
                   <Zap size={14} /> Choisir l'annuel
                 </a>
                 <p className="text-white/25 text-xs text-center mt-2">Essai 7 jours inclus</p>

@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       payment_method_types: ["card"],
-      line_items: [{ price: process.env.STRIPE_PRICE_ID, quantity: 1 }],
+      line_items: [{ price: plan === "yearly" ? process.env.STRIPE_PRICE_ID2 : process.env.STRIPE_PRICE_ID, quantity: 1 }],
       subscription_data: { trial_period_days: 7 },
       success_url: "https://trackova.vercel.app/success",
       cancel_url: "https://trackova.vercel.app/subscribe",
