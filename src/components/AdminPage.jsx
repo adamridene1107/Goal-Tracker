@@ -52,33 +52,17 @@ export default function AdminPage() {
     setGiftLoading(true)
     setGiftMsg("")
     try {
-      // Chercher dans profiles (email stocke lors de l inscription)
-      let userId = null
-      const { data: profiles } = await supabase.from("profiles").select("id, email")
-      const found = (profiles || []).find(p => p.email?.toLowerCase() === giftEmail.trim().toLowerCase())
-      if (found) userId = found.id
-
-      if (!userId) { setGiftMsg("Utilisateur introuvable. Verifie que l email est correct et que l utilisateur s est inscrit."); setGiftLoading(false); return }
-
-      // Calculer la date d expiration
+      const res = await fetch("/api/grant-free-months", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: giftEmail.trim(), months: giftMonths })
+      })
+      const data = await res.json()
+      if (!res.ok) { setGiftMsg("Erreur: " + (data.error || "Inconnue")); setGiftLoading(false); return }
       const expiry = new Date()
       expiry.setMonth(expiry.getMonth() + parseInt(giftMonths))
-
-      // Mettre a jour les settings
-      const { data: goalData } = await supabase.from("goal_data").select("id, settings").eq("user_id", userId).single()
-      if (goalData) {
-        const newSettings = { ...(goalData.settings || {}), freeUntil: expiry.toISOString(), giftedMonths: giftMonths }
-        await supabase.from("goal_data").update({ settings: newSettings }).eq("id", goalData.id)
-        setGiftMsg(`✅ ${giftMonths} mois gratuit${giftMonths > 1 ? "s" : ""} accordé${giftMonths > 1 ? "s" : ""} à ${giftEmail} jusqu'au ${expiry.toLocaleDateString("fr-FR")}`)
-      } else {
-        // Creer une ligne goal_data pour cet utilisateur
-        const expiry2 = new Date()
-        expiry2.setMonth(expiry2.getMonth() + parseInt(giftMonths))
-        const newSettings2 = { freeUntil: expiry2.toISOString(), giftedMonths: giftMonths }
-        await supabase.from("goal_data").insert({ user_id: userId, settings: newSettings2 })
-        setGiftMsg(`✅ ${giftMonths} mois gratuit${giftMonths > 1 ? "s" : ""} accordé${giftMonths > 1 ? "s" : ""} à ${giftEmail} jusqu'au ${expiry2.toLocaleDateString("fr-FR")}`)
-      }
-    } catch(e) { setGiftMsg("Erreur: " + e.message) }
+      setGiftMsg(`✅ ${giftMonths} mois gratuit${giftMonths > 1 ? "s" : ""} accordé${giftMonths > 1 ? "s" : ""} à ${giftEmail} jusqu'au ${expiry.toLocaleDateString("fr-FR")} (Stripe + Supabase mis à jour)`)
+    } catch(e) { setGiftMsg("Erreur réseau: " + e.message) }
     setGiftLoading(false)
   }
 
