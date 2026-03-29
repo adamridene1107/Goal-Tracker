@@ -237,7 +237,6 @@ export default function LandingPage({ onGetStarted }) {
                 <p className="text-white/25 text-xs text-center mt-2">Essai 7 jours inclus</p>
               </div>
             </div>
-            </div>
           </div>
         </div>
       </section>
