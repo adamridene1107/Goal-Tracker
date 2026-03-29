@@ -164,7 +164,7 @@ export default function LandingPage({ onGetStarted }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-white">Un outil pour chaque objectif</h2>
             <p className="text-white/40 mt-3 max-w-md mx-auto text-sm">Chaque mode est pensé pour son domaine. Onglets, categories et outils adaptés.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch">
             {FEATURES.map((f, i) => (
               <div key={i} onClick={() => setActiveFeature(i)}
                 className={`card cursor-pointer transition-all duration-300 ${activeFeature === i ? "card-glow" : ""}`}>
@@ -196,8 +196,8 @@ export default function LandingPage({ onGetStarted }) {
             <div className="glow-orb glow-orb-violet w-64 h-64 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Mensuel */}
-              <div className="card-glass relative overflow-hidden">
-                <div className="mb-4">
+              <div className="card-glass relative overflow-hidden flex flex-col">
+                <div className="mb-4 flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <p className="text-white/50 text-sm">Mensuel</p>
                     <div className="flex items-center gap-1.5">
@@ -218,11 +218,11 @@ export default function LandingPage({ onGetStarted }) {
               </div>
 
               {/* Annuel */}
-              <div className="card-glass relative overflow-hidden" style={{ border:"1px solid rgba(139,92,246,0.3)" }}>
+              <div className="card-glass relative overflow-hidden flex flex-col" style={{ border:"1px solid rgba(139,92,246,0.3)" }}>
                 <div className="absolute top-3 right-3">
                   <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background:"rgba(139,92,246,0.2)", color:"#a78bfa", border:"1px solid rgba(139,92,246,0.4)" }}>Meilleure offre</span>
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 flex-1">
                   <p className="text-white/50 text-sm mb-2">Annuel</p>
                   <div className="flex items-end gap-2">
                     <span className="text-white/30 text-base line-through">72€</span>
