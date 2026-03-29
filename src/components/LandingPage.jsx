@@ -202,7 +202,6 @@ export default function LandingPage({ onGetStarted }) {
               </div>
               <p className="text-white/25 text-xs text-center mt-3">Paiement sécurisé par Stripe · Annulable à tout moment</p>
             </div>
-            </div>
           </div>
         </div>
       </section>
