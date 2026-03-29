@@ -118,6 +118,30 @@ export default function LandingPage({ onGetStarted }) {
         </div>
       </section>
 
+      {/* Demo Video */}
+      <section className="px-4 py-12 max-w-4xl mx-auto">
+        <div className="relative rounded-2xl overflow-hidden" style={{ border:"1px solid rgba(139,92,246,0.2)", boxShadow:"0 24px 64px rgba(0,0,0,0.5)" }}>
+          <video
+            src="/demo.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            onContextMenu={e => e.preventDefault()}
+            className="w-full"
+            style={{ display:"block", pointerEvents:"none" }}
+          />
+          <iframe
+            src="/outro.html"
+            className="w-full"
+            style={{ height:"120px", border:"none", background:"transparent" }}
+            scrolling="no"
+          />
+        </div>
+      </section>
+
       {/* FEATURES */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">

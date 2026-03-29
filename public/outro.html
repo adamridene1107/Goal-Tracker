@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #07070F;
+    font-family: 'DM Mono', monospace;
+    overflow: hidden;
+    width: 100%;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(108,99,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,99,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .glow {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%,100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.1); }
+  }
+
+  .content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    gap: 0;
+  }
+
+  .top-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(108,99,255,0.4);
+    padding: 6px 20px; border-radius: 100px;
+    font-size: 11px; letter-spacing: 3px; color: #C4B5FD;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+  }
+
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #6C63FF;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .logo-row {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: scaleIn 0.9s 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+
+  @keyframes scaleIn {
+    from { opacity:0; transform: scale(0.7); }
+    to { opacity:1; transform: scale(1); }
+  }
+
+  .logo-icon {
+    width: 56px; height: 56px;
+    background: #6C63FF;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px; font-weight: 700; color: #fff;
+  }
+
+  .logo-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 48px; font-weight: 500;
+    color: #F0EEFF; letter-spacing: -1px;
+  }
+
+  .tagline {
+    font-family: 'DM Serif Display', serif;
+    font-size: 64px; line-height: 1.0;
+    color: #F0EEFF;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
+
+  .tagline em { font-style: italic; color: #A78BFA; }
+
+  .sub {
+    font-size: 15px; color: #9090B0; letter-spacing: 1px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.7s 1.2s forwards;
+  }
+
+  .stars {
+    display: flex; gap: 6px; justify-content: center;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.6s 1.4s forwards;
+  }
+
+  .star {
+    width: 24px; height: 24px;
+    background: #F59E0B;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: starPop 0.4s ease both;
+  }
+
+  .star:nth-child(1) { animation-delay: 1.5s; }
+  .star:nth-child(2) { animation-delay: 1.6s; }
+  .star:nth-child(3) { animation-delay: 1.7s; }
+  .star:nth-child(4) { animation-delay: 1.8s; }
+  .star:nth-child(5) { animation-delay: 1.9s; }
+
+  @keyframes starPop {
+    from { opacity:0; transform:scale(0); }
+    to { opacity:1; transform:scale(1); }
+  }
+
+  .rating-text {
+    font-size: 13px; color: #C4B5FD; letter-spacing: 2px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.6s 2.0s forwards;
+  }
+
+  .pills {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.6s 1.5s forwards;
+  }
+
+  .pill {
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 100px; padding: 8px 20px;
+    font-size: 12px; letter-spacing: 2px; color: #9090B0;
+    background: rgba(108,99,255,0.06);
+  }
+
+  .pill.accent {
+    border-color: rgba(108,99,255,0.6);
+    color: #C4B5FD;
+    background: rgba(108,99,255,0.12);
+  }
+
+  .cta-row {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.7s 1.8s forwards;
+  }
+
+  .cta-btn {
+    background: #6C63FF;
+    color: #fff; border: none;
+    padding: 16px 48px; border-radius: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px; letter-spacing: 2px;
+    cursor: pointer;
+    animation: btnGlow 2.5s 2.5s ease-in-out infinite;
+  }
+
+  @keyframes btnGlow {
+    0%,100% { box-shadow: 0 0 0 rgba(108,99,255,0); }
+    50% { box-shadow: 0 0 30px rgba(108,99,255,0.5); }
+  }
+
+  .cta-note {
+    font-size: 11px; color: #4A4A70; letter-spacing: 2px;
+  }
+
+  .bottom-line {
+    position: absolute; bottom: 24px;
+    font-size: 11px; letter-spacing: 4px; color: #2A2A50;
+    opacity: 0;
+    animation: fadeUp 0.6s 2.2s forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(16px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 7px; height: 7px;
+    border-radius: 2px;
+    pointer-events: none;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity:1; }
+    100% { transform: translateY(600px) rotate(720deg); opacity:0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+<div class="glow"></div>
+
+<div class="content">
+  <div class="top-badge">
+    <div class="dot"></div>
+    DISPONIBLE MAINTENANT
+  </div>
+
+  <div class="logo-row">
+    <div class="logo-icon">T</div>
+    <div class="logo-name">Trackova</div>
+  </div>
+
+  <div class="tagline">
+    L'app qui te fait<br><em>vraiment avancer.</em>
+  </div>
+
+  <div class="sub">Études · Sport · Projet perso · Organisation</div>
+
+  <div class="stars">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+  </div>
+
+  <div class="rating-text">NOTE 5/5 · MEILLEURE APP PRODUCTIVITÉ 2026</div>
+
+  <div class="pills">
+    <div class="pill accent">7 JOURS GRATUITS</div>
+    <div class="pill">SANS CARTE BANCAIRE</div>
+    <div class="pill accent">6€ / MOIS</div>
+    <div class="pill">SANS ENGAGEMENT</div>
+  </div>
+
+  <div class="cta-row">
+    <div class="cta-btn">trackova.vercel.app</div>
+    <div class="cta-note">STAY ON TARGET</div>
+  </div>
+</div>
+
+<div class="bottom-line">© 2026 TRACKOVA · TOUS DROITS RÉSERVÉS</div>
+
+<script>
+  function spawnConfetti() {
+    const colors = ['#6C63FF','#A78BFA','#C4B5FD','#10B981','#F59E0B','#EC4899'];
+    for (let i = 0; i < 40; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.left = Math.random() * 100 + '%';
+        el.style.top = '-10px';
+        el.style.background = colors[Math.floor(Math.random() * colors.length)];
+        el.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+        el.style.animationDelay = (Math.random() * 0.5) + 's';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 3500);
+      }, i * 60);
+    }
+  }
+
+  setTimeout(spawnConfetti, 2200);
+  setInterval(spawnConfetti, 6000);
+</script>
+
+</body>
+</html>
