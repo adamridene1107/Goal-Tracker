@@ -2,7 +2,7 @@ export const GOALS = [
   {
     id: "homework", label: "Études", emoji: "📚",
     color: "from-blue-500 to-indigo-600", light: "bg-blue-50", accent: "text-blue-600", ring: "ring-blue-200",
-    tasks: ["Faire mes devoirs seul(e)", "Relire mes leçons", "Préparer mon cartable"],
+    tasks: ["Faire mes devoirs", "Relire mes leçons", "Préparer mon cartable"],
     tips: [
       "Commence par la matiere la plus difficile quand tu es frais(che).",
       "Fais une pause de 5 min toutes les 25 min (technique Pomodoro).",
