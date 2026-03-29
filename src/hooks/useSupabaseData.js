@@ -11,10 +11,12 @@ function defaultData() {
 export function useSupabaseData(userId) {
   const [data, setData] = useState(defaultData)
   const [loading, setLoading] = useState(true)
-  const [recordId, setRecordId] = useState(null)
+  const recordIdRef = useRef(null) // ref pour eviter les problemes de closure
   const saveTimer = useRef(null)
+  const userIdRef = useRef(userId)
 
-  // Charger les données depuis Supabase
+  useEffect(() => { userIdRef.current = userId }, [userId])
+
   useEffect(() => {
     if (!userId) return
     loadData()
@@ -30,15 +32,17 @@ export function useSupabaseData(userId) {
         .single()
 
       if (error && error.code === 'PGRST116') {
-        // Pas de données — créer une ligne vide
         const { data: newRow } = await supabase
           .from('goal_data')
           .insert({ user_id: userId, ...defaultData() })
           .select()
           .single()
-        if (newRow) { setRecordId(newRow.id); setData(defaultData()) }
+        if (newRow) {
+          recordIdRef.current = newRow.id
+          setData(defaultData())
+        }
       } else if (rows) {
-        setRecordId(rows.id)
+        recordIdRef.current = rows.id
         setData({
           goal: rows.goal,
           streak: rows.streak || 0,
@@ -55,11 +59,10 @@ export function useSupabaseData(userId) {
     setLoading(false)
   }
 
-  // Sauvegarder avec debounce 1s
-  const save = useCallback((newData) => {
-    if (!userId || !recordId) return
-    clearTimeout(saveTimer.current)
-    saveTimer.current = setTimeout(async () => {
+  // Save direct sans debounce pour les donnees critiques
+  const saveImmediate = useCallback(async (newData) => {
+    if (!userIdRef.current || !recordIdRef.current) return
+    try {
       await supabase.from('goal_data').update({
         goal: newData.goal,
         streak: newData.streak,
@@ -69,9 +72,17 @@ export function useSupabaseData(userId) {
         devoirs: newData.devoirs,
         settings: newData.settings,
         updated_at: new Date().toISOString(),
-      }).eq('id', recordId)
-    }, 1000)
-  }, [userId, recordId])
+      }).eq('id', recordIdRef.current)
+    } catch(e) {
+      console.error('save error:', e)
+    }
+  }, [])
+
+  // Save avec debounce pour les updates frequents
+  const save = useCallback((newData) => {
+    clearTimeout(saveTimer.current)
+    saveTimer.current = setTimeout(() => saveImmediate(newData), 800)
+  }, [saveImmediate])
 
   const updateData = useCallback((patch) => {
     setData(prev => {
@@ -81,7 +92,6 @@ export function useSupabaseData(userId) {
     })
   }, [save])
 
-  // Streak logic
   const checkStreak = useCallback((d) => {
     const t = today()
     if (d.last_active === t) return d
