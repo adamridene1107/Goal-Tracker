@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import LangSwitcher from "./LangSwitcher"
 import { useTheme } from "../context/ThemeContext"
 import { Zap, Target, BookOpen, ArrowRight, CheckCircle2, Flame, Star, Shield, Dumbbell, Lightbulb, ListTodo, ChevronRight, Play } from "lucide-react"
@@ -36,6 +36,8 @@ export default function LandingPage({ onGetStarted }) {
   const textPrimary = isDark ? "#ffffff" : "#1a1a2e"
   const textMuted = isDark ? "rgba(255,255,255,0.5)" : "rgba(26,26,46,0.5)"
   const [faqOpen, setFaqOpen] = useState(null)
+  const [videoMuted, setVideoMuted] = useState(true)
+  const videoRef = useRef(null)
   const [confetti, setConfetti] = useState([])
   const [activeFeature, setActiveFeature] = useState(0)
 
@@ -122,6 +124,7 @@ export default function LandingPage({ onGetStarted }) {
       <section className="px-4 py-12 max-w-4xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden" style={{ border:"1px solid rgba(139,92,246,0.2)", boxShadow:"0 24px 64px rgba(0,0,0,0.5)" }}>
           <video
+            ref={videoRef}
             src="/demo.mp4"
             autoPlay
             muted
@@ -131,8 +134,19 @@ export default function LandingPage({ onGetStarted }) {
             controlsList="nodownload nofullscreen noremoteplayback"
             onContextMenu={e => e.preventDefault()}
             className="w-full"
-            style={{ display:"block", pointerEvents:"none" }}
+            style={{ display:"block" }}
           />
+          <button
+            onClick={() => {
+              if (videoRef.current) {
+                videoRef.current.muted = !videoRef.current.muted
+                setVideoMuted(videoRef.current.muted)
+              }
+            }}
+            className="absolute bottom-3 right-3 flex items-center justify-center w-9 h-9 rounded-full transition-all"
+            style={{ background:"rgba(0,0,0,0.6)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.15)" }}>
+            {videoMuted ? "🔇" : "🔊"}
+          </button>
           <iframe
             src="/outro.html"
             className="w-full"
