@@ -17,6 +17,7 @@ const AuthPage = lazy(() => import("./components/AuthPage"))
 const LegalPage = lazy(() => import("./components/LegalPage"))
 const ContactPage = lazy(() => import("./components/ContactPage"))
 const NotFound = lazy(() => import("./components/NotFound"))
+const ResetPasswordPage = lazy(() => import("./components/ResetPasswordPage"))
 const ProfilePage = lazy(() => import("./components/ProfilePage"))
 
 const Spinner = () => (
@@ -48,6 +49,7 @@ function Root() {
   if (path === "/admin") return <Suspense fallback={<Spinner />}><AdminPage /></Suspense>
   if (path === "/privacy") return <Suspense fallback={<Spinner />}><LegalPage type="privacy" /></Suspense>
   if (path === "/cgu") return <Suspense fallback={<Spinner />}><LegalPage type="cgu" /></Suspense>
+  if (path === "/reset-password") return <Suspense fallback={<Spinner />}><ResetPasswordPage /></Suspense>
   if (path === "/contact") return <Suspense fallback={<Spinner />}><ContactPage /></Suspense>
   if (path.startsWith("/profile/")) return <Suspense fallback={<Spinner />}><ProfilePage /></Suspense>
 
