@@ -43,13 +43,13 @@ function Root() {
   }, [])
 
   // Pages publiques
+  if (path === "/reset-password") return <Suspense fallback={<Spinner />}><ResetPasswordPage /></Suspense>
   if (path === "/subscribe") return <Suspense fallback={<Spinner />}><Subscription /></Suspense>
   if (path === "/success") return <Suspense fallback={<Spinner />}><SuccessPage /></Suspense>
   if (path === "/trial-expired") return <Suspense fallback={<Spinner />}><TrialExpired /></Suspense>
   if (path === "/admin") return <Suspense fallback={<Spinner />}><AdminPage /></Suspense>
   if (path === "/privacy") return <Suspense fallback={<Spinner />}><LegalPage type="privacy" /></Suspense>
   if (path === "/cgu") return <Suspense fallback={<Spinner />}><LegalPage type="cgu" /></Suspense>
-  if (path === "/reset-password") return <Suspense fallback={<Spinner />}><ResetPasswordPage /></Suspense>
   if (path === "/contact") return <Suspense fallback={<Spinner />}><ContactPage /></Suspense>
   if (path.startsWith("/profile/")) return <Suspense fallback={<Spinner />}><ProfilePage /></Suspense>
 
