@@ -45,10 +45,14 @@ export default function Subscription() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">Accès complet</h1>
           <div className="flex items-end justify-center gap-2">
+            <span className="text-white/30 text-lg line-through mr-2">10€</span>
             <span className="text-5xl font-bold gradient-text">6€</span>
             <span className="text-white/40 text-sm mb-2">/mois</span>
           </div>
-          <p className="text-white/30 text-xs mt-2">Annulable à tout moment</p>
+          <div className="flex items-center gap-2 mt-2">
+            <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background:"rgba(16,185,129,0.15)", color:"#34d399", border:"1px solid rgba(16,185,129,0.3)" }}>-40%</span>
+            <p className="text-white/30 text-xs">Offre de lancement · Annulable à tout moment</p>
+          </div>
         </div>
         <div className="card-glass mb-4">
           <ul className="space-y-3 mb-6">

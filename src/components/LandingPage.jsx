@@ -108,7 +108,7 @@ export default function LandingPage({ onGetStarted }) {
               Voir la démo
             </button>
           </div>
-          <p className="text-white/25 text-xs mt-5">7 jours gratuits · Puis 6€/mois · Annulable à tout moment</p>
+          <p className="text-white/25 text-xs mt-5">7 jours gratuits · Puis <span style={{textDecoration:"line-through",opacity:0.4,marginRight:"4px"}}>10€</span>6€/mois <span style={{background:"rgba(16,185,129,0.2)",color:"#34d399",padding:"1px 6px",borderRadius:"999px",fontSize:"11px",fontWeight:"700"}}>-40%</span> · Annulable à tout moment</p>
         </div>
         <div className="relative max-w-2xl mx-auto mt-16 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {STATS.map((s, i) => (
@@ -269,7 +269,7 @@ export default function LandingPage({ onGetStarted }) {
             <button onClick={spawn} className="btn-primary flex items-center gap-2 mx-auto text-base px-8 py-4">
               Commencer gratuitement <ArrowRight size={16} />
             </button>
-            <p className="text-white/25 text-xs mt-4">7 jours gratuits · Puis 6€/mois · Annulable à tout moment</p>
+            <p className="text-white/25 text-xs mt-4">7 jours gratuits · Puis <span style={{textDecoration:"line-through",opacity:0.4,marginRight:"4px"}}>10€</span>6€/mois <span style={{background:"rgba(16,185,129,0.2)",color:"#34d399",padding:"1px 6px",borderRadius:"999px",fontSize:"11px",fontWeight:"700"}}>-40%</span> · Annulable à tout moment</p>
           </div>
         </div>
       </section>
