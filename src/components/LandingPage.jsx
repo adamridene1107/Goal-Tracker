@@ -136,8 +136,9 @@ export default function LandingPage({ onGetStarted }) {
           <iframe
             src="/outro.html"
             className="w-full"
-            style={{ height:"120px", border:"none", background:"transparent" }}
+            style={{ height:"520px", border:"none", background:"#07070F" }}
             scrolling="no"
+            title="Trakova outro"
           />
         </div>
       </section>
